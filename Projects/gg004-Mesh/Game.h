@@ -1,12 +1,14 @@
 #pragma once
 
-#include "App\App.h"
+#include "App/App.h"
+#include "Mesh/Shaded.h"
+#include "Mesh/Binder.h"
 
 class Game : public Egg::App
 {
 private:
-	ID3D11Buffer* vertexBuffer;
-	ID3D11InputLayout* inputLayout;
+	Egg::Mesh::Binder::P binder;
+	Egg::Mesh::Shaded::P shadedMesh;
 
 public:
 	Game() = delete;
