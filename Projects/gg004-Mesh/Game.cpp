@@ -18,32 +18,6 @@ Game::~Game()
 
 HRESULT Game::createResources()
 {
-	//D3D11_BUFFER_DESC desc;
-	//desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	//desc.ByteWidth = sizeof(D3DXVECTOR3) * 3;
-	//desc.CPUAccessFlags = 0;
-	//desc.MiscFlags = 0;
-	//desc.StructureByteStride = sizeof(D3DXVECTOR3);
-	//desc.Usage = D3D11_USAGE_IMMUTABLE;
-	//D3DXVECTOR3 vertexPositionArray[3] = {
-	//	D3DXVECTOR3(0, 0, 0.5),
-	//	D3DXVECTOR3(0, 1, 0.5),
-	//	D3DXVECTOR3(1, 0, 0.5) };
-	//D3D11_SUBRESOURCE_DATA initData;
-	//initData.pSysMem = vertexPositionArray;
-	//initData.SysMemPitch = 0;
-	//initData.SysMemSlicePitch = 0;
-	//device->CreateBuffer(&desc, &initData, &vertexBuffer);
-
-	//D3D11_INPUT_ELEMENT_DESC positionElement;
-	//positionElement.AlignedByteOffset = 0;
-	//positionElement.Format = DXGI_FORMAT_R32G32B32_FLOAT;
-	//positionElement.InputSlot = 0;
-	//positionElement.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-	//positionElement.InstanceDataStepRate = 0;
-	//positionElement.SemanticIndex = 0;
-	//positionElement.SemanticName = "POSITION";
-
 	loadEffect();
 
 	binder = Egg::Mesh::Binder::create(device);
@@ -55,7 +29,8 @@ HRESULT Game::createResources()
 	if (!assScene || !assScene->HasMeshes() ||
 		assScene->mNumMeshes == 0)
 	{
-		shadedMesh.reset();
+		//shadedMesh.reset();
+		releaseResources();
 		return E_FAIL;
 	}
 
@@ -71,16 +46,6 @@ HRESULT Game::createResources()
 	shadedMesh = binder->bindMaterial(idleMaterial, indexedMesh);
 	
 	return S_OK;
-
-	//D3DX11_PASS_DESC idlePassDesc;
-	//effect->GetTechniqueByName("idle")->GetPassByName("idle")->GetDesc(&idlePassDesc);
-	//device->CreateInputLayout(
-	//	&positionElement, 1,
-	//	idlePassDesc.pIAInputSignature,
-	//	idlePassDesc.IAInputSignatureSize,
-	//	&inputLayout);
-
-	//return S_OK;
 }
 
 HRESULT Game::releaseResources()
