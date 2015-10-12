@@ -27,14 +27,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>Egg</ProjectName>
-    <ProjectGuid>{40ACE6B2-A1E8-4078-86F5-494C03BC7198}</ProjectGuid>
-    <RootNamespace>Egg</RootNamespace>
+    <ProjectName>gg004-Mesh</ProjectName>
+    <ProjectGuid>{96F3A665-B59C-4329-AFB1-63B16A724630}</ProjectGuid>
+    <RootNamespace>gg004-Mesh</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
@@ -137,7 +137,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>$(ASSIMP_PATH)\include;.;$(DXSDK_PATH)\Include;$(SolutionDir)\Projects\Effects11\Inc;DXUT\Core;DXUT\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ASSIMP_PATH)\include;$(DXSDK_PATH)\Include;$(SolutionDir)/Projects/Egg/App;$(SolutionDir)/Projects/Egg;$(SolutionDir)\Projects\Effects11\Inc;$(SolutionDir)/Projects/Egg/DXUT/Core;$(SolutionDir)/Projects/Egg/DXUT/Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -156,6 +156,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>$(ASSIMP_PATH)\assimp_debug-dll_win32\;$(DXSDK_PATH)\Lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -381,84 +382,31 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Mesh\Binder.cpp" />
-    <ClCompile Include="Mesh\Bound.cpp" />
-    <ClCompile Include="Mesh\Flip.cpp" />
-    <ClCompile Include="Mesh\GeometryLoader.cpp" />
-    <ClCompile Include="Mesh\Importer.cpp" />
-    <ClCompile Include="Mesh\Indexed.cpp" />
-    <ClCompile Include="Mesh\Instanced.cpp" />
-    <ClCompile Include="Mesh\Material.cpp" />
-    <ClCompile Include="Mesh\Mien.cpp" />
-    <ClCompile Include="Mesh\Multi.cpp" />
-    <ClCompile Include="Mesh\Nothing.cpp" />
-    <ClCompile Include="Mesh\Shaded.cpp" />
-    <ClCompile Include="Mesh\VertexStream.cpp" />
-    <None Include="DXUT\Optional\directx.ico" />
-    <ClInclude Include="App\App.h" />
-    <ClInclude Include="App\convertutf.h" />
-    <ClInclude Include="App\EffectInclude.h" />
-    <ClInclude Include="App\stdConversions.h" />
-    <ClInclude Include="App\SystemEnvironment.h" />
-    <ClInclude Include="App\ThrowOnFail.h" />
-    <ClInclude Include="App\UtfConverter.h" />
-    <ClInclude Include="DXUT\Core\DXUT.h" />
-    <ClInclude Include="DXUT\Core\DXUTDevice11.h" />
-    <ClInclude Include="DXUT\Core\DXUTDevice9.h" />
-    <ClInclude Include="DXUT\Core\DXUTmisc.h" />
-    <ClCompile Include="App\App.cpp" />
-    <ClCompile Include="App\convertutf.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="App\EffectInclude.cpp" />
-    <ClCompile Include="App\SystemEnvironment.cpp" />
-    <ClCompile Include="App\UtfConverter.cpp" />
-    <ClCompile Include="DXUT\Core\DXUT.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="DXUT\Core\DXUTDevice11.cpp" />
-    <ClCompile Include="DXUT\Core\DXUTDevice9.cpp" />
-    <ClCompile Include="DXUT\Core\DXUTmisc.cpp" />
-    <ClInclude Include="DXUT\Optional\DXUTcamera.h" />
-    <ClInclude Include="DXUT\Optional\DXUTgui.h" />
-    <ClInclude Include="DXUT\Optional\DXUTres.h" />
-    <ClInclude Include="DXUT\Optional\DXUTsettingsdlg.h" />
-    <ClInclude Include="DXUT\Optional\SDKmesh.h" />
-    <ClInclude Include="DXUT\Optional\SDKmisc.h" />
-    <ClCompile Include="DXUT\Optional\DXUTcamera.cpp" />
-    <ClCompile Include="DXUT\Optional\DXUTgui.cpp" />
-    <ClCompile Include="DXUT\Optional\DXUTres.cpp" />
-    <ClCompile Include="DXUT\Optional\DXUTsettingsdlg.cpp" />
-    <ClCompile Include="DXUT\Optional\SDKmesh.cpp" />
-    <ClCompile Include="DXUT\Optional\SDKmisc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Effects11\Effects11_2010.vcxproj">
       <Project>{df460eab-570d-4b50-9089-2e2fc801bf38}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Egg\Egg_2010.vcxproj">
+      <Project>{40ace6b2-a1e8-4078-86f5-494c03bc7198}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Mesh\Binder.h" />
-    <ClInclude Include="Mesh\Bound.h" />
-    <ClInclude Include="Mesh\D3DEnumOps.h" />
-    <ClInclude Include="Mesh\Flip.h" />
-    <ClInclude Include="Mesh\Geometry.h" />
-    <ClInclude Include="Mesh\GeometryLoader.h" />
-    <ClInclude Include="Mesh\Importer.h" />
-    <ClInclude Include="Mesh\Indexed.h" />
-    <ClInclude Include="Mesh\Instanced.h" />
-    <ClInclude Include="Mesh\Material.h" />
-    <ClInclude Include="Mesh\Mien.h" />
-    <ClInclude Include="Mesh\Multi.h" />
-    <ClInclude Include="Mesh\Nothing.h" />
-    <ClInclude Include="Mesh\Shaded.h" />
-    <ClInclude Include="Mesh\VertexStream.h" />
+    <ClInclude Include="Game.h" />
     <CLInclude Include="resource.h" />
-    <ResourceCompile Include="Egg.rc" />
+    <ResourceCompile Include="gg.rc" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="fx\main.fx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Media\egg.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

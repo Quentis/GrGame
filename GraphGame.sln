@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Egg", "Projects\Egg\Egg_201
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg003-Egg", "Projects\gg003-Egg\gg003-Egg_2010.vcxproj", "{0D8EF822-E7C2-4B9B-B250-866B37DF2ECA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg004-Mesh", "Projects\gg004-Mesh\gg004-Mesh_2010.vcxproj", "{96F3A665-B59C-4329-AFB1-63B16A724630}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -83,6 +85,18 @@ Global
 		{0D8EF822-E7C2-4B9B-B250-866B37DF2ECA}.Release|Win32.Build.0 = Release|Win32
 		{0D8EF822-E7C2-4B9B-B250-866B37DF2ECA}.Release|x64.ActiveCfg = Release|x64
 		{0D8EF822-E7C2-4B9B-B250-866B37DF2ECA}.Release|x64.Build.0 = Release|x64
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Debug|Win32.ActiveCfg = Debug|Win32
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Debug|Win32.Build.0 = Debug|Win32
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Debug|x64.ActiveCfg = Debug|x64
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Debug|x64.Build.0 = Debug|x64
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Profile|Win32.ActiveCfg = Profile|Win32
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Profile|Win32.Build.0 = Profile|Win32
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Profile|x64.ActiveCfg = Profile|x64
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Profile|x64.Build.0 = Profile|x64
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Release|Win32.ActiveCfg = Release|Win32
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Release|Win32.Build.0 = Release|Win32
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Release|x64.ActiveCfg = Release|x64
+		{96F3A665-B59C-4329-AFB1-63B16A724630}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
