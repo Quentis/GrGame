@@ -14,6 +14,12 @@
     <Filter Include="Mesh">
       <UniqueIdentifier>{ddbfd2ca-a7e9-4dfb-a686-36fb2effb9d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{52d3e48e-d240-4915-8092-deedb3a011d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cam">
+      <UniqueIdentifier>{91bb2ebf-261d-43c3-8967-9af9dfda19d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -135,6 +141,15 @@
     <ClCompile Include="Mesh\VertexStream.cpp">
       <Filter>Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Math\constants.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Cam\FirstPerson.cpp">
+      <Filter>Cam</Filter>
+    </ClCompile>
+    <ClCompile Include="Cam\Fixed.cpp">
+      <Filter>Cam</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -208,6 +223,75 @@
     </ClInclude>
     <ClInclude Include="Mesh\VertexStream.h">
       <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\bool1.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\bool2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\bool3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\bool4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\boolswizzle.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\float1.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\float2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\float2swizzle.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\float3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\float3swizzle.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\float4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\float4swizzle.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\float4x4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\floatswizzle.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\int1.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\int2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\int3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\int4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\intswizzle.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\math.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Cam\Base.h">
+      <Filter>Cam</Filter>
+    </ClInclude>
+    <ClInclude Include="Cam\FirstPerson.h">
+      <Filter>Cam</Filter>
+    </ClInclude>
+    <ClInclude Include="Cam\Fixed.h">
+      <Filter>Cam</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -59,6 +59,9 @@
 #endif
 #endif
 
+// Min and max is implemented in the project
+#define NOMINMAX
+
 // Standard Windows includes
 #include <windows.h>
 #include <initguid.h>

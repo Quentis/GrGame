@@ -15,6 +15,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg003-Egg", "Projects\gg003
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg004-Mesh", "Projects\gg004-Mesh\gg004-Mesh_2010.vcxproj", "{96F3A665-B59C-4329-AFB1-63B16A724630}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg005-Cam", "Projects\gg005-Cam\gg005-Cam_2010.vcxproj", "{AF0F23D1-0F1F-454C-9962-097434239C20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fx", "fx", "{D2C31C29-41A5-4617-AC87-8AD9C62E74F3}"
+	ProjectSection(SolutionItems) = preProject
+		fx\basic.fx = fx\basic.fx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -97,6 +104,18 @@ Global
 		{96F3A665-B59C-4329-AFB1-63B16A724630}.Release|Win32.Build.0 = Release|Win32
 		{96F3A665-B59C-4329-AFB1-63B16A724630}.Release|x64.ActiveCfg = Release|x64
 		{96F3A665-B59C-4329-AFB1-63B16A724630}.Release|x64.Build.0 = Release|x64
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Debug|Win32.Build.0 = Debug|Win32
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Debug|x64.ActiveCfg = Debug|x64
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Debug|x64.Build.0 = Debug|x64
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Profile|Win32.ActiveCfg = Profile|Win32
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Profile|Win32.Build.0 = Profile|Win32
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Profile|x64.ActiveCfg = Profile|x64
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Profile|x64.Build.0 = Profile|x64
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Release|Win32.ActiveCfg = Release|Win32
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Release|Win32.Build.0 = Release|Win32
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Release|x64.ActiveCfg = Release|x64
+		{AF0F23D1-0F1F-454C-9962-097434239C20}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
