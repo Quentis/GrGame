@@ -27,7 +27,7 @@ HRESULT Game::createResources()
 	/*Particle-START*/
 	for (int i = 0; i<40; i++)
 		particles.push_back(Particle());
-
+	
 	D3D11_INPUT_ELEMENT_DESC particleElements[3];
 	particleElements[0].AlignedByteOffset = offsetof(Particle, position);
 	particleElements[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
@@ -156,6 +156,18 @@ void Game::animate(double dt, double t)
 	{
 		particles.at(i).move(dt);
 	}
+
+	struct CameraDepthComparator {
+		float3 ahead;
+		bool operator()(const Particle& a,
+			const Particle& b) {
+			return
+				a.position.dot(ahead) >
+				b.position.dot(ahead) + 0.01;
+		}
+	} comp = { firstPersonCam->getAhead() };
+	std::sort(particles.begin(),
+		particles.end(), comp);
 
 	ID3D11Buffer* vertexBuffer = fireBillboardSet->getGeometry()->getPrimaryBuffer();
 	ID3D11DeviceContext* context;

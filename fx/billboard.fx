@@ -84,6 +84,6 @@ technique11 billboard {
 		SetRasterizerState(defaultRasterizer);
 		SetPixelShader(CompileShader(ps_5_0, psFire()));
 		SetDepthStencilState(noDepthWriteCompositor, 0);
-		SetBlendState(additiveBlender, float4(0.0f, 0.0f, 0.0f, 0.0f), 0xFFFFFFFF);
+		SetBlendState(transparencyBlender, float4(0.0f, 0.0f, 0.0f, 0.0f), 0xFFFFFFFF);
 	}
 }
