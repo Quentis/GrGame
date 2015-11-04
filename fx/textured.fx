@@ -20,6 +20,9 @@ technique11 textured
 	{
 		SetVertexShader(CompileShader(vs_5_0, vsTrafo()));
 		SetGeometryShader(NULL);
+		SetRasterizerState(defaultRasterizer);
 		SetPixelShader(CompileShader(ps_5_0, psTextured()));
+		SetDepthStencilState(defaultCompositor, 0);
+		SetBlendState(defaultBlender, float4(0.0f, 0.0f, 0.0f, 0.0f), 0xFFFFFFFF);
 	}
 }

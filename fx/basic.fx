@@ -1,3 +1,7 @@
+#include <blendStates.fx>
+#include <rasterizerStates.fx>
+#include <depthStencilStates.fx>
+
 float4x4 modelMatrix;
 float4x4 modelMatrixInverse;
 float4x4 modelViewProjMatrix;
@@ -38,9 +42,11 @@ technique11 basic
 {
 	pass basic
 	{
-		SetVertexShader(CompileShader(
-			vs_5_0, vsTrafo()));
-		SetPixelShader(CompileShader(
-			ps_5_0, psBasic()));
+		SetVertexShader(CompileShader(vs_5_0, vsTrafo()));
+		SetGeometryShader(NULL);
+		SetRasterizerState(defaultRasterizer);
+		SetPixelShader(CompileShader(ps_5_0, psBasic()));
+		SetDepthStencilState(defaultCompositor, 0);
+		SetBlendState(defaultBlender, float4(0.0f, 0.0f, 0.0f, 0.0f), 0xFFFFFFFF);
 	}
 }

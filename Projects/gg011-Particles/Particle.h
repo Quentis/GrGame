@@ -12,4 +12,5 @@ class Particle
 public:
 	void reborn();
 	Particle::Particle(){ reborn(); }
+	void move(float dt);
 };

@@ -45,12 +45,18 @@ technique11 envmapped
 	{
 		SetVertexShader(CompileShader(vs_5_0, vsTrafo()));
 		SetGeometryShader(NULL);
+		SetRasterizerState(defaultRasterizer);
 		SetPixelShader(CompileShader(ps_5_0, psEnvMapped()));
+		SetDepthStencilState(defaultCompositor, 0);
+		SetBlendState(defaultBlender, float4(0.0f, 0.0f, 0.0f, 0.0f), 0xFFFFFFFF);
 	}
 	pass background
 	{
 		SetVertexShader(CompileShader(vs_5_0, vsQuad()));
 		SetGeometryShader(NULL);
+		SetRasterizerState(defaultRasterizer);
 		SetPixelShader(CompileShader(ps_5_0, psBackground()));
+		SetDepthStencilState(defaultCompositor, 0);
+		SetBlendState(defaultBlender, float4(0.0f, 0.0f, 0.0f, 0.0f), 0xFFFFFFFF);
 	}
 }

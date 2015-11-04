@@ -8,3 +8,13 @@ void Particle::reborn() {
 	age = 0;
 	lifespan = float1::random(2, 5);
 }
+
+void Particle::move(float dt)
+{
+	position += velocity * dt;
+	age += dt;
+	if (age > lifespan)
+	{
+		reborn();
+	}
+}

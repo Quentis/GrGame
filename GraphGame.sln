@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fx", "fx", "{D2C31C29-41A5-
 	ProjectSection(SolutionItems) = preProject
 		fx\basic.fx = fx\basic.fx
 		fx\billboard.fx = fx\billboard.fx
+		fx\blendStates.fx = fx\blendStates.fx
 		fx\depthStencilStates.fx = fx\depthStencilStates.fx
 		fx\envmapped.fx = fx\envmapped.fx
 		fx\rasterizerStates.fx = fx\rasterizerStates.fx

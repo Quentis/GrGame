@@ -108,6 +108,7 @@ HRESULT Game::createResources()
 	shadedMesh = binder->bindMaterial(envmappedMaterial, indexedMesh);
 	
 	firstPersonCam = Egg::Cam::FirstPerson::create();
+	firstPersonCam->setView(float3(0, 0, 200), float3(0, 0, -1))->setProj(1.2, 1, 1, 1000)->setSpeed(50);
 
 	return S_OK;
 }
@@ -150,6 +151,20 @@ void Game::animate(double dt, double t)
 	if (!firstPersonCam) return;
 	firstPersonCam->animate(dt);
 	setTransformation();
+
+	for (int i = 0; i < particles.size(); i++)
+	{
+		particles.at(i).move(dt);
+	}
+
+	ID3D11Buffer* vertexBuffer = fireBillboardSet->getGeometry()->getPrimaryBuffer();
+	ID3D11DeviceContext* context;
+	device->GetImmediateContext(&context);
+	D3D11_MAPPED_SUBRESOURCE mappedVertexData;
+	context->Map(vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedVertexData);
+	memcpy(mappedVertexData.pData, &particles.at(0), sizeof(Particle) *	particles.size());
+	context->Unmap(vertexBuffer, 0);
+	context->Release();
 }
 
 bool Game::processMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -162,7 +177,7 @@ bool Game::processMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 HRESULT Game::createSwapChainResources()
 {
 	using namespace Egg::Math;
-	float4 worldBillboardSize(0.2, 0.2, 0, 0);
+	float4 worldBillboardSize(50.0, 50.0, 0, 0);
 	float4 screenBillboardSize = worldBillboardSize * firstPersonCam->getProjMatrix();
 	effect->GetVariableByName("billboardWidth")->AsScalar()->SetFloat(screenBillboardSize.x);
 	effect->GetVariableByName("billboardHeight")->AsScalar()->SetFloat(screenBillboardSize.y);
