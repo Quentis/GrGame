@@ -20,6 +20,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fx", "fx", "{D2C31C29-41A5-4617-AC87-8AD9C62E74F3}"
 	ProjectSection(SolutionItems) = preProject
 		fx\basic.fx = fx\basic.fx
+		fx\billboard.fx = fx\billboard.fx
+		fx\depthStencilStates.fx = fx\depthStencilStates.fx
+		fx\envmapped.fx = fx\envmapped.fx
+		fx\rasterizerStates.fx = fx\rasterizerStates.fx
 		fx\shaded.fx = fx\shaded.fx
 		fx\textured.fx = fx\textured.fx
 	EndProjectSection
@@ -27,6 +31,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg006-Shade", "Projects\gg006-Shade\gg006-Shade_2010.vcxproj", "{1B07506A-99A7-421B-8CF5-B6B68DA4ACFB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg007-Texture", "Projects\gg007-Texture\gg007-Texture_2010.vcxproj", "{C35A2412-4477-42EE-8883-2BFF5AF483EE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg008-EnvMap", "Projects\gg008-EnvMap\gg008-EnvMap_2010.vcxproj", "{BB594477-3EA8-4302-B2E2-3FF96D96623A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg011-Particles", "Projects\gg011-Particles\gg011-Particles_2010.vcxproj", "{382A2B10-2302-4617-9A32-364DA9B4F409}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -146,6 +154,30 @@ Global
 		{C35A2412-4477-42EE-8883-2BFF5AF483EE}.Release|Win32.Build.0 = Release|Win32
 		{C35A2412-4477-42EE-8883-2BFF5AF483EE}.Release|x64.ActiveCfg = Release|x64
 		{C35A2412-4477-42EE-8883-2BFF5AF483EE}.Release|x64.Build.0 = Release|x64
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Debug|Win32.Build.0 = Debug|Win32
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Debug|x64.ActiveCfg = Debug|x64
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Debug|x64.Build.0 = Debug|x64
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Profile|Win32.ActiveCfg = Profile|Win32
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Profile|Win32.Build.0 = Profile|Win32
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Profile|x64.ActiveCfg = Profile|x64
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Profile|x64.Build.0 = Profile|x64
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Release|Win32.ActiveCfg = Release|Win32
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Release|Win32.Build.0 = Release|Win32
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Release|x64.ActiveCfg = Release|x64
+		{BB594477-3EA8-4302-B2E2-3FF96D96623A}.Release|x64.Build.0 = Release|x64
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Debug|Win32.ActiveCfg = Debug|Win32
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Debug|Win32.Build.0 = Debug|Win32
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Debug|x64.ActiveCfg = Debug|x64
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Debug|x64.Build.0 = Debug|x64
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Profile|Win32.ActiveCfg = Profile|Win32
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Profile|Win32.Build.0 = Profile|Win32
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Profile|x64.ActiveCfg = Profile|x64
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Profile|x64.Build.0 = Profile|x64
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Release|Win32.ActiveCfg = Release|Win32
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Release|Win32.Build.0 = Release|Win32
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Release|x64.ActiveCfg = Release|x64
+		{382A2B10-2302-4617-9A32-364DA9B4F409}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

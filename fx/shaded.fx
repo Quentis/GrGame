@@ -36,15 +36,13 @@ technique11 shaded
 {
 	pass diffuse
 	{
-		SetVertexShader(CompileShader(
-			vs_5_0, vsTrafo()));
-		SetPixelShader(CompileShader(
-			ps_5_0, psDiffuse()));
+		SetVertexShader(CompileShader(vs_5_0, vsTrafo()));
+		SetGeometryShader(NULL);
+		SetPixelShader(CompileShader(ps_5_0, psDiffuse()));
 	}
 	pass specular {
-		SetVertexShader(CompileShader(
-			vs_5_0, vsTrafo()));
-		SetPixelShader(CompileShader(ps_5_0,
-			psSpecular()));
+		SetVertexShader(CompileShader(vs_5_0, vsTrafo()));
+		SetGeometryShader(NULL);
+		SetPixelShader(CompileShader(ps_5_0, psSpecular()));
 	}
 }
