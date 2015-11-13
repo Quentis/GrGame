@@ -20,6 +20,9 @@
     <Filter Include="Cam">
       <UniqueIdentifier>{91bb2ebf-261d-43c3-8967-9af9dfda19d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sas">
+      <UniqueIdentifier>{c26e134f-5fa0-45b7-a113-5d4f1ad9b44e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">

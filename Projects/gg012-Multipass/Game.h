@@ -16,10 +16,15 @@ private:
 	ID3D11ShaderResourceView* kdSrv;
 	ID3D11ShaderResourceView* envSrv;
 	Egg::Mesh::Shaded::P backgroundQuad;
+	Egg::Mesh::Shaded::P showQuad;
 
 	std::vector<Particle> particles;
 	Egg::Mesh::Shaded::P fireBillboardSet;
 	ID3D11ShaderResourceView* billboardSrv;
+
+	ID3D11Texture2D* texture;
+	ID3D11RenderTargetView* rtv;
+	ID3D11ShaderResourceView * srv;
 
 	void setTransformation();
 

@@ -1,2 +1,2 @@
-#include <envmapped.fx>
+#include <multipass.fx>
 #include <billboard.fx>
