@@ -405,6 +405,9 @@ CDXUTDialogResourceManager::CDXUTDialogResourceManager()
     m_pInputLayout11 = NULL;
     m_pVBScreenQuad11 = NULL;
     m_pSpriteBuffer11 = NULL;
+
+	//Fix the MS issue
+	m_SpriteBufferBytes11 = 0;
 }
 
 
