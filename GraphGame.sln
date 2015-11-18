@@ -40,6 +40,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg011-Particles", "Projects
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg012-Multipass", "Projects\gg012-Multipass\gg012-Multipass_2010.vcxproj", "{2224F7B8-1EBE-4E8E-94E1-0AEACBD0C316}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg013-RenderEngine", "Projects\gg013-RenderEngine\gg013-RenderEngine_2010.vcxproj", "{B2491E16-3F04-4EE4-AFA4-470BEB10501A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -194,6 +196,18 @@ Global
 		{2224F7B8-1EBE-4E8E-94E1-0AEACBD0C316}.Release|Win32.Build.0 = Release|Win32
 		{2224F7B8-1EBE-4E8E-94E1-0AEACBD0C316}.Release|x64.ActiveCfg = Release|x64
 		{2224F7B8-1EBE-4E8E-94E1-0AEACBD0C316}.Release|x64.Build.0 = Release|x64
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Debug|Win32.Build.0 = Debug|Win32
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Debug|x64.ActiveCfg = Debug|x64
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Debug|x64.Build.0 = Debug|x64
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Profile|Win32.ActiveCfg = Profile|Win32
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Profile|Win32.Build.0 = Profile|Win32
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Profile|x64.ActiveCfg = Profile|x64
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Profile|x64.Build.0 = Profile|x64
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Release|Win32.ActiveCfg = Release|Win32
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Release|Win32.Build.0 = Release|Win32
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Release|x64.ActiveCfg = Release|x64
+		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

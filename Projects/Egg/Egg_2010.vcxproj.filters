@@ -23,6 +23,12 @@
     <Filter Include="Sas">
       <UniqueIdentifier>{c26e134f-5fa0-45b7-a113-5d4f1ad9b44e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{1b4632b6-6d05-4f52-a729-83bcfeb9d9ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sas\Control">
+      <UniqueIdentifier>{d28678f0-357f-4728-890f-14ca14019a65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -152,6 +158,24 @@
     </ClCompile>
     <ClCompile Include="Cam\Fixed.cpp">
       <Filter>Cam</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Entity.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ManagerApp.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sas\SasApp.cpp">
+      <Filter>Sas</Filter>
+    </ClCompile>
+    <ClCompile Include="Sas\Control\Button.cpp">
+      <Filter>Sas\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="Sas\Control\Checkbox.cpp">
+      <Filter>Sas\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="Sas\Control\Slider.cpp">
+      <Filter>Sas\Control</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +319,39 @@
     </ClInclude>
     <ClInclude Include="Cam\Fixed.h">
       <Filter>Cam</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ControlParameters.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Directory.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Entity.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ManagerApp.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\RenderParameters.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\StaticEntity.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Sas\SasApp.h">
+      <Filter>Sas</Filter>
+    </ClInclude>
+    <ClInclude Include="Sas\Control\Button.h">
+      <Filter>Sas\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="Sas\Control\Checkbox.h">
+      <Filter>Sas\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="Sas\Control\Control.h">
+      <Filter>Sas\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="Sas\Control\Slider.h">
+      <Filter>Sas\Control</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
