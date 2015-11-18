@@ -50,10 +50,14 @@ dlldata.c
 *.tmp
 *.tmp_proj
 *.log
+*.tlog
 *.vspscc
 *.vssscc
 .builds
 *.pidb
+*.idb
+*.res
+*.exp
 *.svclog
 *.scc
 
