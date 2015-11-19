@@ -42,6 +42,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg012-Multipass", "Projects
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg013-RenderEngine", "Projects\gg013-RenderEngine\gg013-RenderEngine_2010.vcxproj", "{B2491E16-3F04-4EE4-AFA4-470BEB10501A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg014-Script", "Projects\gg014-Script\gg014-Script_2010.vcxproj", "{CE390AE5-4657-4948-B640-2C498A554436}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaBind", "Projects\LuaBind\LuaBind.vcxproj", "{CB50B522-876F-4B70-9EC4-5B0C735323D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -208,6 +212,27 @@ Global
 		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Release|Win32.Build.0 = Release|Win32
 		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Release|x64.ActiveCfg = Release|x64
 		{B2491E16-3F04-4EE4-AFA4-470BEB10501A}.Release|x64.Build.0 = Release|x64
+		{CE390AE5-4657-4948-B640-2C498A554436}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CE390AE5-4657-4948-B640-2C498A554436}.Debug|Win32.Build.0 = Debug|Win32
+		{CE390AE5-4657-4948-B640-2C498A554436}.Debug|x64.ActiveCfg = Debug|x64
+		{CE390AE5-4657-4948-B640-2C498A554436}.Debug|x64.Build.0 = Debug|x64
+		{CE390AE5-4657-4948-B640-2C498A554436}.Profile|Win32.ActiveCfg = Profile|Win32
+		{CE390AE5-4657-4948-B640-2C498A554436}.Profile|Win32.Build.0 = Profile|Win32
+		{CE390AE5-4657-4948-B640-2C498A554436}.Profile|x64.ActiveCfg = Profile|x64
+		{CE390AE5-4657-4948-B640-2C498A554436}.Profile|x64.Build.0 = Profile|x64
+		{CE390AE5-4657-4948-B640-2C498A554436}.Release|Win32.ActiveCfg = Release|Win32
+		{CE390AE5-4657-4948-B640-2C498A554436}.Release|Win32.Build.0 = Release|Win32
+		{CE390AE5-4657-4948-B640-2C498A554436}.Release|x64.ActiveCfg = Release|x64
+		{CE390AE5-4657-4948-B640-2C498A554436}.Release|x64.Build.0 = Release|x64
+		{CB50B522-876F-4B70-9EC4-5B0C735323D9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CB50B522-876F-4B70-9EC4-5B0C735323D9}.Debug|Win32.Build.0 = Debug|Win32
+		{CB50B522-876F-4B70-9EC4-5B0C735323D9}.Debug|x64.ActiveCfg = Debug|Win32
+		{CB50B522-876F-4B70-9EC4-5B0C735323D9}.Profile|Win32.ActiveCfg = Release|Win32
+		{CB50B522-876F-4B70-9EC4-5B0C735323D9}.Profile|Win32.Build.0 = Release|Win32
+		{CB50B522-876F-4B70-9EC4-5B0C735323D9}.Profile|x64.ActiveCfg = Release|Win32
+		{CB50B522-876F-4B70-9EC4-5B0C735323D9}.Release|Win32.ActiveCfg = Release|Win32
+		{CB50B522-876F-4B70-9EC4-5B0C735323D9}.Release|Win32.Build.0 = Release|Win32
+		{CB50B522-876F-4B70-9EC4-5B0C735323D9}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

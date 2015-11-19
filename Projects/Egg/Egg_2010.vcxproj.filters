@@ -29,6 +29,9 @@
     <Filter Include="Sas\Control">
       <UniqueIdentifier>{d28678f0-357f-4728-890f-14ca14019a65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{a9f743a0-8f11-402e-872b-17d61ae49d7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -176,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="Sas\Control\Slider.cpp">
       <Filter>Sas\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\ScriptedApp.cpp">
+      <Filter>Script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +358,15 @@
     </ClInclude>
     <ClInclude Include="Sas\Control\Slider.h">
       <Filter>Sas\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\EnumReflectionMap.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\LuaTable.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\ScriptedApp.h">
+      <Filter>Script</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

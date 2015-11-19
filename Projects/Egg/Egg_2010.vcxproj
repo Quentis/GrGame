@@ -137,9 +137,9 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>$(ASSIMP_PATH)\include;.;$(DXSDK_PATH)\Include;$(SolutionDir)\Projects\Effects11\Inc;DXUT\Core;DXUT\Optional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ASSIMP_PATH)\include;$(DXSDK_PATH)\Include;$(SolutionDir)\Projects\Effects11\Inc;DXUT\Core;DXUT\Optional;$(BOOST_PATH);$(SolutionDir)/Projects/Lua;$(SolutionDir)/Projects/LuaBind;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;LUABIND_DYNAMIC_LINK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -405,6 +405,7 @@
     <ClCompile Include="Sas\SasApp.cpp" />
     <ClCompile Include="Scene\Entity.cpp" />
     <ClCompile Include="Scene\ManagerApp.cpp" />
+    <ClCompile Include="Script\ScriptedApp.cpp" />
     <ClInclude Include="Sas\Control\Button.h" />
     <ClInclude Include="Sas\Control\Checkbox.h" />
     <ClInclude Include="Sas\Control\Control.h" />
@@ -416,6 +417,9 @@
     <ClInclude Include="Scene\ManagerApp.h" />
     <ClInclude Include="Scene\RenderParameters.h" />
     <ClInclude Include="Scene\StaticEntity.h" />
+    <ClInclude Include="Script\EnumReflectionMap.h" />
+    <ClInclude Include="Script\LuaTable.h" />
+    <ClInclude Include="Script\ScriptedApp.h" />
     <None Include="DXUT\Optional\directx.ico" />
     <ClInclude Include="App\App.h" />
     <ClInclude Include="App\convertutf.h" />
@@ -462,6 +466,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Effects11\Effects11_2010.vcxproj">
       <Project>{df460eab-570d-4b50-9089-2e2fc801bf38}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\LuaBind\LuaBind.vcxproj">
+      <Project>{cb50b522-876f-4b70-9ec4-5b0c735323d9}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
