@@ -1,14 +1,14 @@
 #pragma once
 
 #include "App/App.h"
-#include "Scene/ManagerApp.h"
+#include "Script/ScriptedApp.h"
 #include "Mesh/Shaded.h"
 #include "Mesh/Binder.h"
 #include "Cam/FirstPerson.h"
 #include "Particle.h"
 #include <vector>
 
-class Game : public Egg::Scene::ManagerApp
+class Game : public Egg::Script::ScriptedApp
 {
 private:
 

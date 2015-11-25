@@ -8,6 +8,9 @@
     <Filter Include="fx">
       <UniqueIdentifier>{4ea692f1-fec2-4753-a3a8-abe4a4f81384}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lua">
+      <UniqueIdentifier>{b6c1b7ce-223c-49d2-9a63-6a04f20b8d7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -35,5 +38,10 @@
     <Image Include="Media\egg.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Media\podScene.lua">
+      <Filter>lua</Filter>
+    </None>
   </ItemGroup>
 </Project>

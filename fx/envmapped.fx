@@ -24,6 +24,7 @@ VsosQuad vsQuad(IaosQuad input)
 	hWorldPosMinusEye /= hWorldPosMinusEye.w;
 	output.viewDir = hWorldPosMinusEye.xyz;
 	output.tex = input.tex;
+	output.pos.z = 0.999999;
 	return output;
 }
 

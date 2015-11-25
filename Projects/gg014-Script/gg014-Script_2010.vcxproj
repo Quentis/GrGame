@@ -410,6 +410,9 @@
   <ItemGroup>
     <Image Include="Media\egg.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Media\podScene.lua" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
