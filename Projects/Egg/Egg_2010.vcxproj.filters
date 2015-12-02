@@ -32,6 +32,9 @@
     <Filter Include="Script">
       <UniqueIdentifier>{a9f743a0-8f11-402e-872b-17d61ae49d7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{e8dda52e-7d01-4d0b-9206-c918f282349a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -182,6 +185,15 @@
     </ClCompile>
     <ClCompile Include="Script\ScriptedApp.cpp">
       <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsApp.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsEntity.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PxEnumReflections.cpp">
+      <Filter>Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -367,6 +379,18 @@
     </ClInclude>
     <ClInclude Include="Script\ScriptedApp.h">
       <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsApp.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsEntity.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsMathConversions.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PxEnumReflections.h">
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
