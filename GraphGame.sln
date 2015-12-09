@@ -48,6 +48,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LuaBind", "Projects\LuaBind
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg015-Physics", "Projects\gg015-Physics\gg015-Physics_2010.vcxproj", "{3B740CD6-BFE4-4CC7-B976-74F9D41B9C7C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg016-Control", "Projects\gg016-Control\gg016-Control_2010.vcxproj", "{B261EBCC-332B-4C9D-95AC-415109C49420}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -247,6 +249,18 @@ Global
 		{3B740CD6-BFE4-4CC7-B976-74F9D41B9C7C}.Release|Win32.Build.0 = Release|Win32
 		{3B740CD6-BFE4-4CC7-B976-74F9D41B9C7C}.Release|x64.ActiveCfg = Release|x64
 		{3B740CD6-BFE4-4CC7-B976-74F9D41B9C7C}.Release|x64.Build.0 = Release|x64
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Debug|Win32.Build.0 = Debug|Win32
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Debug|x64.ActiveCfg = Debug|x64
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Debug|x64.Build.0 = Debug|x64
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Profile|Win32.ActiveCfg = Profile|Win32
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Profile|Win32.Build.0 = Profile|Win32
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Profile|x64.ActiveCfg = Profile|x64
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Profile|x64.Build.0 = Profile|x64
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Release|Win32.ActiveCfg = Release|Win32
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Release|Win32.Build.0 = Release|Win32
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Release|x64.ActiveCfg = Release|x64
+		{B261EBCC-332B-4C9D-95AC-415109C49420}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

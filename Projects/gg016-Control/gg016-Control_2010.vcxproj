@@ -27,14 +27,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>Egg</ProjectName>
-    <ProjectGuid>{40ACE6B2-A1E8-4078-86F5-494C03BC7198}</ProjectGuid>
-    <RootNamespace>Egg</RootNamespace>
+    <ProjectName>gg016-Control</ProjectName>
+    <ProjectGuid>{B261EBCC-332B-4C9D-95AC-415109C49420}</ProjectGuid>
+    <RootNamespace>gg016-Control</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
@@ -137,7 +137,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <AdditionalIncludeDirectories>$(ASSIMP_PATH)\include;$(DXSDK_PATH)\Include;$(SolutionDir)\Projects\Effects11\Inc;DXUT\Core;DXUT\Optional;$(BOOST_PATH);$(SolutionDir)/Projects/Lua;$(SolutionDir)/Projects/LuaBind;C:\tools\PhysX-3.2_PC_SDK_Core\Include;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ASSIMP_PATH)/include;$(DXSDK_PATH)/Include;$(SolutionDir)/Projects/Egg/App;$(SolutionDir)/Projects/Egg;$(SolutionDir)/Projects/Effects11/Inc;$(SolutionDir)/Projects/Egg/DXUT/Core;$(SolutionDir)/Projects/Egg/DXUT/Optional;$(SolutionDir)/Projects/luabind;$(SolutionDir)/Projects/lua;$(BOOST_PATH);C:\tools\PhysX-3.2_PC_SDK_Core\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>WIN32;_DEBUG;DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;LUABIND_DYNAMIC_LINK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -147,7 +147,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>d3dcompiler.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3dcompiler.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;assimpd.lib;lua5.1.lib;lua51.lib;PhysX3_x86.lib;PhysX3Common_x86.lib;PhysX3Extensions.lib;PhysXVisualDebuggerSDK.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <LargeAddressAware>true</LargeAddressAware>
@@ -156,6 +156,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <DelayLoadDLLs>%(DelayLoadDLLs)</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>$(ASSIMP_PATH)\lib\x86\debug;$(DXSDK_PATH)\Lib\x86\;$(SolutionDir)\Projects\Lua;C:\tools\PhysX-3.2_PC_SDK_Core\Lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Manifest>
       <EnableDPIAwareness>true</EnableDPIAwareness>
@@ -381,149 +382,36 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cam\FirstPerson.cpp" />
-    <ClCompile Include="Cam\Fixed.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Control\ControlApp.cpp" />
-    <ClCompile Include="Control\ControlledEntity.cpp" />
-    <ClCompile Include="Math\constants.cpp" />
-    <ClCompile Include="Mesh\Binder.cpp" />
-    <ClCompile Include="Mesh\Bound.cpp" />
-    <ClCompile Include="Mesh\Flip.cpp" />
-    <ClCompile Include="Mesh\GeometryLoader.cpp" />
-    <ClCompile Include="Mesh\Importer.cpp" />
-    <ClCompile Include="Mesh\Indexed.cpp" />
-    <ClCompile Include="Mesh\Instanced.cpp" />
-    <ClCompile Include="Mesh\Material.cpp" />
-    <ClCompile Include="Mesh\Mien.cpp" />
-    <ClCompile Include="Mesh\Multi.cpp" />
-    <ClCompile Include="Mesh\Nothing.cpp" />
-    <ClCompile Include="Mesh\Shaded.cpp" />
-    <ClCompile Include="Mesh\VertexStream.cpp" />
-    <ClCompile Include="Physics\PhysicsApp.cpp" />
-    <ClCompile Include="Physics\PhysicsEntity.cpp" />
-    <ClCompile Include="Physics\PxEnumReflections.cpp" />
-    <ClCompile Include="Sas\Control\Button.cpp" />
-    <ClCompile Include="Sas\Control\Checkbox.cpp" />
-    <ClCompile Include="Sas\Control\Slider.cpp" />
-    <ClCompile Include="Sas\SasApp.cpp" />
-    <ClCompile Include="Scene\Entity.cpp" />
-    <ClCompile Include="Scene\ManagerApp.cpp" />
-    <ClCompile Include="Script\ScriptedApp.cpp" />
-    <ClInclude Include="Control\ControlApp.h" />
-    <ClInclude Include="Control\ControlledEntity.h" />
-    <ClInclude Include="Physics\PhysicsApp.h" />
-    <ClInclude Include="Physics\PhysicsEntity.h" />
-    <ClInclude Include="Physics\PhysicsMathConversions.h" />
-    <ClInclude Include="Physics\PxEnumReflections.h" />
-    <ClInclude Include="Sas\Control\Button.h" />
-    <ClInclude Include="Sas\Control\Checkbox.h" />
-    <ClInclude Include="Sas\Control\Control.h" />
-    <ClInclude Include="Sas\Control\Slider.h" />
-    <ClInclude Include="Sas\SasApp.h" />
-    <ClInclude Include="Scene\ControlParameters.h" />
-    <ClInclude Include="Scene\Directory.h" />
-    <ClInclude Include="Scene\Entity.h" />
-    <ClInclude Include="Scene\ManagerApp.h" />
-    <ClInclude Include="Scene\RenderParameters.h" />
-    <ClInclude Include="Scene\StaticEntity.h" />
-    <ClInclude Include="Script\EnumReflectionMap.h" />
-    <ClInclude Include="Script\LuaTable.h" />
-    <ClInclude Include="Script\ScriptedApp.h" />
-    <None Include="DXUT\Optional\directx.ico" />
-    <ClInclude Include="App\App.h" />
-    <ClInclude Include="App\convertutf.h" />
-    <ClInclude Include="App\EffectInclude.h" />
-    <ClInclude Include="App\stdConversions.h" />
-    <ClInclude Include="App\SystemEnvironment.h" />
-    <ClInclude Include="App\ThrowOnFail.h" />
-    <ClInclude Include="App\UtfConverter.h" />
-    <ClInclude Include="Cam\Base.h" />
-    <ClInclude Include="Cam\FirstPerson.h" />
-    <ClInclude Include="Cam\Fixed.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="DXUT\Core\DXUT.h" />
-    <ClInclude Include="DXUT\Core\DXUTDevice11.h" />
-    <ClInclude Include="DXUT\Core\DXUTDevice9.h" />
-    <ClInclude Include="DXUT\Core\DXUTmisc.h" />
-    <ClCompile Include="App\App.cpp" />
-    <ClCompile Include="App\convertutf.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="App\EffectInclude.cpp" />
-    <ClCompile Include="App\SystemEnvironment.cpp" />
-    <ClCompile Include="App\UtfConverter.cpp" />
-    <ClCompile Include="DXUT\Core\DXUT.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="DXUT\Core\DXUTDevice11.cpp" />
-    <ClCompile Include="DXUT\Core\DXUTDevice9.cpp" />
-    <ClCompile Include="DXUT\Core\DXUTmisc.cpp" />
-    <ClInclude Include="DXUT\Optional\DXUTcamera.h" />
-    <ClInclude Include="DXUT\Optional\DXUTgui.h" />
-    <ClInclude Include="DXUT\Optional\DXUTres.h" />
-    <ClInclude Include="DXUT\Optional\DXUTsettingsdlg.h" />
-    <ClInclude Include="DXUT\Optional\SDKmesh.h" />
-    <ClInclude Include="DXUT\Optional\SDKmisc.h" />
-    <ClCompile Include="DXUT\Optional\DXUTcamera.cpp" />
-    <ClCompile Include="DXUT\Optional\DXUTgui.cpp" />
-    <ClCompile Include="DXUT\Optional\DXUTres.cpp" />
-    <ClCompile Include="DXUT\Optional\DXUTsettingsdlg.cpp" />
-    <ClCompile Include="DXUT\Optional\SDKmesh.cpp" />
-    <ClCompile Include="DXUT\Optional\SDKmisc.cpp" />
+    <ClCompile Include="Particle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Effects11\Effects11_2010.vcxproj">
       <Project>{df460eab-570d-4b50-9089-2e2fc801bf38}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\LuaBind\LuaBind.vcxproj">
-      <Project>{cb50b522-876f-4b70-9ec4-5b0c735323d9}</Project>
+    <ProjectReference Include="..\Egg\Egg_2010.vcxproj">
+      <Project>{40ace6b2-a1e8-4078-86f5-494c03bc7198}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Math\bool1.h" />
-    <ClInclude Include="Math\bool2.h" />
-    <ClInclude Include="Math\bool3.h" />
-    <ClInclude Include="Math\bool4.h" />
-    <ClInclude Include="Math\boolswizzle.h" />
-    <ClInclude Include="Math\float1.h" />
-    <ClInclude Include="Math\float2.h" />
-    <ClInclude Include="Math\float2swizzle.h" />
-    <ClInclude Include="Math\float3.h" />
-    <ClInclude Include="Math\float3swizzle.h" />
-    <ClInclude Include="Math\float4.h" />
-    <ClInclude Include="Math\float4swizzle.h" />
-    <ClInclude Include="Math\float4x4.h" />
-    <ClInclude Include="Math\floatswizzle.h" />
-    <ClInclude Include="Math\int1.h" />
-    <ClInclude Include="Math\int2.h" />
-    <ClInclude Include="Math\int3.h" />
-    <ClInclude Include="Math\int4.h" />
-    <ClInclude Include="Math\intswizzle.h" />
-    <ClInclude Include="Math\math.h" />
-    <ClInclude Include="Mesh\Binder.h" />
-    <ClInclude Include="Mesh\Bound.h" />
-    <ClInclude Include="Mesh\D3DEnumOps.h" />
-    <ClInclude Include="Mesh\Flip.h" />
-    <ClInclude Include="Mesh\Geometry.h" />
-    <ClInclude Include="Mesh\GeometryLoader.h" />
-    <ClInclude Include="Mesh\Importer.h" />
-    <ClInclude Include="Mesh\Indexed.h" />
-    <ClInclude Include="Mesh\Instanced.h" />
-    <ClInclude Include="Mesh\Material.h" />
-    <ClInclude Include="Mesh\Mien.h" />
-    <ClInclude Include="Mesh\Multi.h" />
-    <ClInclude Include="Mesh\Nothing.h" />
-    <ClInclude Include="Mesh\Shaded.h" />
-    <ClInclude Include="Mesh\VertexStream.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Particle.h" />
     <CLInclude Include="resource.h" />
-    <ResourceCompile Include="Egg.rc" />
+    <ResourceCompile Include="gg.rc" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="fx\main.fx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Media\egg.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Media\podScene.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

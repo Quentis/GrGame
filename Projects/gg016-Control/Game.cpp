@@ -11,7 +11,7 @@
 
 using namespace Egg::Math;
 
-Game::Game(ID3D11Device* device) : Egg::Physics::PhysicsApp(device)
+Game::Game(ID3D11Device* device) : Egg::Control::ControlApp(device)
 {
 }
 

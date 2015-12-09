@@ -35,6 +35,9 @@
     <Filter Include="Physics">
       <UniqueIdentifier>{e8dda52e-7d01-4d0b-9206-c918f282349a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Control">
+      <UniqueIdentifier>{074b4dc8-5771-4ddc-934c-f1ed72751f35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -194,6 +197,12 @@
     </ClCompile>
     <ClCompile Include="Physics\PxEnumReflections.cpp">
       <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Control\ControlApp.cpp">
+      <Filter>Control</Filter>
+    </ClCompile>
+    <ClCompile Include="Control\ControlledEntity.cpp">
+      <Filter>Control</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -391,6 +400,12 @@
     </ClInclude>
     <ClInclude Include="Physics\PxEnumReflections.h">
       <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Control\ControlApp.h">
+      <Filter>Control</Filter>
+    </ClInclude>
+    <ClInclude Include="Control\ControlledEntity.h">
+      <Filter>Control</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

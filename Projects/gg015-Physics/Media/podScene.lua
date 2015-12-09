@@ -20,7 +20,7 @@ O:MultiMeshFromFile(_, {name='pod', file='geopod.x'})
 O:PhysicsMaterial(_, {name = 'default'})
 
 for i=0,10,1 do
-	O:PhysicsEntity(_, {name='pod'..i, multiMesh='pod', position={x=0, y=0, z=i*10} }, function (_)
+	O:PhysicsEntity(_, {name='pod'..i, multiMesh='pod', position={x=0, y=20, z=i*10} }, function (_)
 		O:Dynamics(_, {linearVelocity={y=10}, angularVelocity={y=2}} )
 		O:Shape(_, {geometryType='eCAPSULE', material='default', orientationAngle=0, orientationAxis={x=0, y=1, z=0}, halfHeight=5, radius=3, position = { y=0 } } )
 		O:Shape(_, {geometryType='eBOX',     material='default', orientationAngle=0.79, orientationAxis={x=0, y=1, z=0}, halfExtents = {x=4, y=1, z=4}, position = { x=4.5, y=-1, z=0 } } )
@@ -31,19 +31,16 @@ for i=0,10,1 do
 end
 
 
-O:PhysicsEntity(_, {name='ground', multiMesh='pod', position={x=0, y=-20, z=0} }, function(_)
+O:MultiMeshFromFile(_, {name='ground', file='ground.x'})
+O:PhysicsEntity(_, {name='ground', multiMesh='ground', position={x=0, y=-20, z=0} }, function(_)
 	O:Shape(_, {
 			geometryType='eBOX',
 			material='default',
 			orientationAngle=0,
 			orientationAxis={x=0, y=1, z=0},
-			halfExtent = {1000, 1000, 0},
+			halfExtents = {x=1000, y=1, z=1000},
 			position = { y=0 } } )
 end )
-
-O:MultiMeshFromFile(_, {name='ground', file='ground.x'})
-
-
 
 
 O:IndexedMesh(_, {name='background', file='quad.x'})
