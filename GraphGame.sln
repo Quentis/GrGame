@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fx", "fx", "{D2C31C29-41A5-
 		fx\billboard.fx = fx\billboard.fx
 		fx\blendStates.fx = fx\blendStates.fx
 		fx\depthStencilStates.fx = fx\depthStencilStates.fx
+		fx\displacement.fx = fx\displacement.fx
 		fx\envmapped.fx = fx\envmapped.fx
 		fx\multipass.fx = fx\multipass.fx
 		fx\rasterizerStates.fx = fx\rasterizerStates.fx
@@ -49,6 +50,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg015-Physics", "Projects\gg015-Physics\gg015-Physics_2010.vcxproj", "{3B740CD6-BFE4-4CC7-B976-74F9D41B9C7C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg016-Control", "Projects\gg016-Control\gg016-Control_2010.vcxproj", "{B261EBCC-332B-4C9D-95AC-415109C49420}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg017-Displacement", "Projects\gg017-Displacement\gg017-Displacement_2010.vcxproj", "{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -261,6 +264,18 @@ Global
 		{B261EBCC-332B-4C9D-95AC-415109C49420}.Release|Win32.Build.0 = Release|Win32
 		{B261EBCC-332B-4C9D-95AC-415109C49420}.Release|x64.ActiveCfg = Release|x64
 		{B261EBCC-332B-4C9D-95AC-415109C49420}.Release|x64.Build.0 = Release|x64
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Debug|Win32.Build.0 = Debug|Win32
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Debug|x64.ActiveCfg = Debug|x64
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Debug|x64.Build.0 = Debug|x64
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Profile|Win32.ActiveCfg = Profile|Win32
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Profile|Win32.Build.0 = Profile|Win32
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Profile|x64.ActiveCfg = Profile|x64
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Profile|x64.Build.0 = Profile|x64
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Release|Win32.ActiveCfg = Release|Win32
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Release|Win32.Build.0 = Release|Win32
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Release|x64.ActiveCfg = Release|x64
+		{4C5DEE87-7953-4343-8072-C4ED26BFA7EC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
