@@ -52,6 +52,8 @@ namespace Egg { namespace Physics
 		physx::PxRigidActor* getActor(){return actor;}
 
 		physx::PxRigidDynamic* makeActorDynamic(physx::PxScene* scene);
+
+		virtual void kill();
 	};
 
 }}

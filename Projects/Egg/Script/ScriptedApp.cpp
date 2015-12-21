@@ -3,8 +3,23 @@
 #include "Script/LuaTable.h"
 #include "Scene/StaticEntity.h"
 #include "Cam/FirstPerson.h"
+#include "Cam/Fixed.h"
+#include "Script/AiEnumReflections.h"
 
 using namespace Egg;
+
+int luabindErrorHandler( lua_State* L )
+{
+    // log the error message
+    luabind::object msg( luabind::from_stack( L, -1 ) );
+    std::ostringstream str;
+    str << "lua> run-time error: " << msg;
+	
+	MessageBoxA( NULL, str.str().c_str(), "Lua error!", MB_OK);
+
+    // return unmodified error object
+    return 1;
+}
 
 Script::ScriptedApp::ScriptedApp(ID3D11Device* device)
 	:ManagerApp(device)
@@ -33,12 +48,17 @@ Script::ScriptedApp::ScriptedApp(ID3D11Device* device)
 			.def("MultiMeshFromFile", &Script::ScriptedApp::addMultiMeshFromFile)
 			.def("StaticEntity", &Script::ScriptedApp::addStaticEntity)
 			.def("FirstPersonCam", &Script::ScriptedApp::addFirstPersonCam)
+			.def("FixedCam", &Script::ScriptedApp::addFixedCam)
 			.def("FlipMeshFromExistingMultiMesh", &Script::ScriptedApp::addExistingFlipMeshToMultiMesh)
 	];
+
+	AiEnumReflections::initialize();
 
 	int s = luaL_dostring(luaState, "O = nil; _ = nil; function setEgg(egg) O = egg end");
 	if(s != 0){std::string errs = lua_tostring(luaState, -1);MessageBoxA( NULL, errs.c_str(), "Lua error!", MB_OK);  }
 	call_function<Script::ScriptedApp*>(luaState, "setEgg", this);
+
+	set_pcall_callback(luabindErrorHandler);
 }
 
 HRESULT Script::ScriptedApp::createResources()
@@ -48,9 +68,10 @@ HRESULT Script::ScriptedApp::createResources()
 
 HRESULT Script::ScriptedApp::releaseResources()
 {
+	HRESULT hr = Scene::ManagerApp::releaseResources();
 	// no references to lua objects should remain (e.g. controlStates)
 	lua_close(luaState);
-	return Scene::ManagerApp::releaseResources();
+	return hr;
 }
 
 void Script::ScriptedApp::render(ID3D11DeviceContext* context)
@@ -197,7 +218,8 @@ void Script::ScriptedApp::addMultiMeshFromFile(luabind::object nil, luabind::obj
 	{
 		std::string name = attributeTable.getString("name");
 		std::string filename = attributeTable.getString("file");
-		Egg::Mesh::Multi::P multi = loadMultiMesh(filename, 0, name);
+		unsigned int flags = attributeTable.getEnumCombination<aiPostProcessSteps, unsigned int>("flags");
+		Egg::Mesh::Multi::P multi = loadMultiMesh(filename, flags, name);
 		multiMeshes[name] = multi;
 	}
 	catch(Egg::HrException exception){ exitWithErrorMessage(exception); }
@@ -233,11 +255,29 @@ void Script::ScriptedApp::addFirstPersonCam(luabind::object nil, luabind::object
 		using namespace Egg::Math;
 		std::string name = attributeTable.getString("name");
 		Egg::Cam::FirstPerson::P firstPersonCam = Egg::Cam::FirstPerson::create()
-			/*->setView(attributeTable.getFloat3("position", float3::zero), attributeTable.getFloat3("ahead", -float3::zUnit))
-			  ->setProj(attributeTable.getFloat("fov", 1.2), attributeTable.getFloat("aspect", 1), attributeTable.getFloat("front", 0.1), attributeTable.getFloat("back", 1000.0))
-			  ->setSpeed(attributeTable.getFloat("speed", 5));*/;
+			->setView(attributeTable.getFloat3("position", float3::zero), attributeTable.getFloat3("position", -float3::zUnit))
+			->setProj(attributeTable.getFloat("fov", 1.2), attributeTable.getFloat("aspect", 1), attributeTable.getFloat("front", 0.1), attributeTable.getFloat("back", 1000.0))
+			->setSpeed(attributeTable.getFloat("speed", 5));
 
 		cameras[name] = firstPersonCam;
+		currentCamera = cameras.begin();
+	}
+	catch(Egg::HrException exception){ exitWithErrorMessage(exception); }
+}
+
+void Script::ScriptedApp::addFixedCam(luabind::object nil, luabind::object attributes)
+{
+	LuaTable attributeTable(attributes, "FixedCam");
+	try
+	{
+		using namespace Egg::Math;
+		std::string name = attributeTable.getString("name");
+		Egg::Cam::Fixed::P fixedCam = Egg::Cam::Fixed::create( Egg::Scene::Entity::P() );
+//			->setView(attributeTable.getFloat3("position", float3::zero), attributeTable.getFloat3("position", -float3::zUnit))
+//			->setProj(attributeTable.getFloat("fov", 1.2), attributeTable.getFloat("aspect", 1), attributeTable.getFloat("front", 0.1), attributeTable.getFloat("back", 1000.0))
+//			->setSpeed(attributeTable.getFloat("speed", 5));
+
+		cameras[name] = fixedCam;
 		currentCamera = cameras.begin();
 	}
 	catch(Egg::HrException exception){ exitWithErrorMessage(exception); }

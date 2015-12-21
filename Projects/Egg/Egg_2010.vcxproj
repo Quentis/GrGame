@@ -383,7 +383,7 @@
   <ItemGroup>
     <ClCompile Include="Cam\FirstPerson.cpp" />
     <ClCompile Include="Cam\Fixed.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Control\ControlApp.cpp" />
     <ClCompile Include="Control\ControlledEntity.cpp" />
@@ -404,19 +404,25 @@
     <ClCompile Include="Physics\PhysicsApp.cpp" />
     <ClCompile Include="Physics\PhysicsEntity.cpp" />
     <ClCompile Include="Physics\PxEnumReflections.cpp" />
+    <ClCompile Include="Physics\RagdollEntity.cpp" />
     <ClCompile Include="Sas\Control\Button.cpp" />
     <ClCompile Include="Sas\Control\Checkbox.cpp" />
     <ClCompile Include="Sas\Control\Slider.cpp" />
     <ClCompile Include="Sas\SasApp.cpp" />
     <ClCompile Include="Scene\Entity.cpp" />
     <ClCompile Include="Scene\ManagerApp.cpp" />
+    <ClCompile Include="Script\AiEnumReflections.cpp" />
     <ClCompile Include="Script\ScriptedApp.cpp" />
+    <ClCompile Include="Vehicle\VehicleApp.cpp" />
+    <ClCompile Include="Vehicle\VehicleEntity.cpp" />
+    <ClCompile Include="Vehicle\VehicleSceneQueryData.cpp" />
     <ClInclude Include="Control\ControlApp.h" />
     <ClInclude Include="Control\ControlledEntity.h" />
     <ClInclude Include="Physics\PhysicsApp.h" />
     <ClInclude Include="Physics\PhysicsEntity.h" />
     <ClInclude Include="Physics\PhysicsMathConversions.h" />
     <ClInclude Include="Physics\PxEnumReflections.h" />
+    <ClInclude Include="Physics\RagdollEntity.h" />
     <ClInclude Include="Sas\Control\Button.h" />
     <ClInclude Include="Sas\Control\Checkbox.h" />
     <ClInclude Include="Sas\Control\Control.h" />
@@ -428,9 +434,15 @@
     <ClInclude Include="Scene\ManagerApp.h" />
     <ClInclude Include="Scene\RenderParameters.h" />
     <ClInclude Include="Scene\StaticEntity.h" />
+    <ClInclude Include="Script\AiEnumReflections.h" />
     <ClInclude Include="Script\EnumReflectionMap.h" />
     <ClInclude Include="Script\LuaTable.h" />
     <ClInclude Include="Script\ScriptedApp.h" />
+    <ClInclude Include="Vehicle\ConvexPhysicsMesh.h" />
+    <ClInclude Include="Vehicle\StaticPartEntity.h" />
+    <ClInclude Include="Vehicle\VehicleApp.h" />
+    <ClInclude Include="Vehicle\VehicleEntity.h" />
+    <ClInclude Include="Vehicle\VehicleSceneQueryData.h" />
     <None Include="DXUT\Optional\directx.ico" />
     <ClInclude Include="App\App.h" />
     <ClInclude Include="App\convertutf.h" />
@@ -442,7 +454,7 @@
     <ClInclude Include="Cam\Base.h" />
     <ClInclude Include="Cam\FirstPerson.h" />
     <ClInclude Include="Cam\Fixed.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="DXUT\Core\DXUT.h" />
     <ClInclude Include="DXUT\Core\DXUTDevice11.h" />

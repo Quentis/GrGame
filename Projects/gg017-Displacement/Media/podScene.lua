@@ -58,7 +58,6 @@ O:StaticEntity(_, {name='sky', multiMesh='skybackground'} )
 
 
 
-
 O:Material(_, {name='window', technique='envmapped', pass='envmapped'}, function(_)
 	O:setSrv(_, {effectVariable='kdTexture', file='giraffe.jpg'})
 	O:setSrv(_, {effectVariable='envTexture', file='cloudynoon.dds'})

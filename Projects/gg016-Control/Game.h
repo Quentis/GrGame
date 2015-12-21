@@ -1,14 +1,5 @@
 #pragma once
-
-#include "App/App.h"
-#include "Script/ScriptedApp.h"
-#include "Physics/PhysicsApp.h"
 #include "Control/ControlApp.h"
-#include "Mesh/Shaded.h"
-#include "Mesh/Binder.h"
-#include "Cam/FirstPerson.h"
-#include "Particle.h"
-#include <vector>
 
 class Game : public Egg::Control::ControlApp
 {

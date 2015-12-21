@@ -34,6 +34,7 @@ namespace Egg { namespace Script
 
 		void addStaticEntity(luabind::object nil, luabind::object attributes);
 		void addFirstPersonCam(luabind::object nil, luabind::object attributes);
+		void addFixedCam(luabind::object nil, luabind::object attributes);
 
 		void runScript(const std::string& luaFilename);
 

@@ -23,3 +23,13 @@ BlendState transparencyBlender
 	DestBlendAlpha = one;
 	BlendOpAlpha = add;
 };
+
+BlendState underlayBlender
+{
+	BlendEnable[0] = true;
+	SrcBlend = inv_dest_alpha;
+	DestBlend = dest_alpha;
+	BlendOp = add;
+	SrcBlendAlpha = one;
+	DestBlendAlpha = one;
+};

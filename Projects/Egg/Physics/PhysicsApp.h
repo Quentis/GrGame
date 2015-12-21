@@ -3,6 +3,7 @@
 #include "PxPhysicsAPI.h"
 #include "pvd/PxVisualDebugger.h"
 #include "Physics/PhysicsEntity.h"
+#include "Physics/RagdollEntity.h"
 
 namespace Egg { namespace Physics
 {
@@ -17,6 +18,7 @@ namespace Egg { namespace Physics
 		physx::PxScene* scene;
 
 		double densityForEntityBeingAdded;
+		Egg::Scene::Directory<PhysicsEntity> bonesOfRagdollBeingAdded;
 
 		double timeRemainingOfTimestep;
 		double timestep;
@@ -39,6 +41,9 @@ namespace Egg { namespace Physics
 		void addPhysicsEntity(luabind::object nil, luabind::object attributes, luabind::object initializer);
 		void addShapeToPhysicsEntity(PhysicsEntity::P physicsEntity, luabind::object attributes);
 		void setDynamicsForPhysicsEntity(PhysicsEntity::P physicsEntity, luabind::object attributes);
+
+		void addRagdoll(luabind::object nil, luabind::object attributes, luabind::object initializer);
+		void addBoneToRagdoll(RagdollEntity::P ragdoll, luabind::object attributes, luabind::object initializer);
 	};
 
 }}

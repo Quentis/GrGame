@@ -3,6 +3,7 @@
 #include "Script/LuaTable.h"
 #include "Physics/PhysicsMathConversions.h"
 #include "Physics/PhysicsEntity.h"
+#include "Physics/RagdollEntity.h"
 #include "Physics/PxEnumReflections.h"
 
 using namespace Egg;
@@ -16,12 +17,15 @@ Physics::PhysicsApp::PhysicsApp(ID3D11Device* device)
 	module(luaState)
 	[
 		class_<Physics::PhysicsEntity>("PhysicsEntity"),
+		class_<Physics::RagdollEntity>("RagdollEntity"),
 
 		class_<Physics::PhysicsApp, Script::ScriptedApp>("PhysicsApp")
 			.def("PhysicsMaterial", &Physics::PhysicsApp::addPhysicsMaterial)
 			.def("PhysicsEntity", &Physics::PhysicsApp::addPhysicsEntity)
 			.def("Shape", &Physics::PhysicsApp::addShapeToPhysicsEntity)
 			.def("Dynamics", &Physics::PhysicsApp::setDynamicsForPhysicsEntity)
+			.def("Ragdoll", &Physics::PhysicsApp::addRagdoll)
+			.def("Bone", &Physics::PhysicsApp::addBoneToRagdoll)
 	];
 
 	call_function<Physics::PhysicsApp*>(luaState, "setEgg", this);
@@ -91,10 +95,12 @@ HRESULT Physics::PhysicsApp::createResources()
 
 HRESULT Physics::PhysicsApp::releaseResources()
 {
+	HRESULT hr = __super::releaseResources();
+
 	if (pvdConnection)
 		pvdConnection->release();
 
-	return __super::releaseResources();
+	return hr;
 }
 
 void Physics::PhysicsApp::render(ID3D11DeviceContext* context)
@@ -106,7 +112,7 @@ void Physics::PhysicsApp::animate(double dt, double t)
 {
 
 	timeRemainingOfTimestep -= dt;
-	if(timeRemainingOfTimestep < 0)
+	while(timeRemainingOfTimestep < 0)
 	{
 		timeRemainingOfTimestep += timestep;
 		__super::animate(timestep, t);
@@ -157,7 +163,15 @@ void Physics::PhysicsApp::addPhysicsEntity(luabind::object nil, luabind::object 
 		densityForEntityBeingAdded = 1.0;
 		initializer(physicsEntity);
 		if(PxRigidDynamic* rigidDynamic = physicsEntity->getActor()->isRigidDynamic())
+		{
 			PxRigidBodyExt::updateMassAndInertia(*rigidDynamic, densityForEntityBeingAdded);
+			physx::PxTransform cmasspose = rigidDynamic->getCMassLocalPose();
+			if(abs(cmasspose.q.w) > 0.99 ) // is the intertia tensor is almost diagonal, make it diagonal
+			{
+				cmasspose.q = PxQuat(0, 0, 0, 1);
+				rigidDynamic->setCMassLocalPose(cmasspose);
+			}
+		}
 		physicsEntity->getActor()->userData = physicsEntity.get();
 		scene->addActor(*physicsEntity->getActor());
 		entities[entityName] = physicsEntity;
@@ -228,6 +242,87 @@ void Physics::PhysicsApp::setDynamicsForPhysicsEntity(PhysicsEntity::P physicsEn
 		float density = attributeTable.getFloat("density", -1.0);
 		if(density > 0)
 			densityForEntityBeingAdded = density;
+	}
+	catch(Egg::HrException exception){ exitWithErrorMessage(exception); }
+}
+
+
+void Physics::PhysicsApp::addRagdoll(luabind::object nil, luabind::object attributes, luabind::object initializer)
+{
+	using namespace Egg::Script;
+	LuaTable attributeTable(attributes, "Ragdoll");
+	try
+	{
+		std::string entityName = attributeTable.getString("name");
+		std::string multiMeshName = attributeTable.getString("multiMesh");
+		using namespace Egg::Math;
+		float3 position = attributeTable.getFloat3("position");
+		float3 axis = attributeTable.getFloat3("orientationAxis", float3(0, 1, 0));
+		float angle = attributeTable.getFloat("orientationAngle");
+		Scene::Directory<Mesh::Multi>::iterator iMultiMesh = multiMeshes.find(multiMeshName);
+		if(iMultiMesh == multiMeshes.end())
+			attributeTable.throwError(std::string("Unknown MultiMesh '") +multiMeshName+ "'.");
+		Physics::RagdollEntity::P ragdollEntity = Physics::RagdollEntity::create(position, float4::quatAxisAngle(axis, angle), iMultiMesh->second);
+		densityForEntityBeingAdded = 1.0;
+		initializer(ragdollEntity);
+		entities[entityName] = ragdollEntity;
+		//TODO move all actors by position and orientation
+		bonesOfRagdollBeingAdded.clear();
+	}
+	catch(Egg::HrException exception){ exitWithErrorMessage(exception); }
+}
+
+void Physics::PhysicsApp::addBoneToRagdoll(RagdollEntity::P ragdoll, luabind::object attributes, luabind::object initializer)
+{
+	using namespace Egg::Script;
+	using namespace Egg::Math;
+	LuaTable attributeTable(attributes, "Bone");
+	try
+	{
+		std::string entityName = attributeTable.getString("name");
+		using namespace Egg::Math;
+		float3 position = attributeTable.getFloat3("position");
+		float3 orientation = attributeTable.getFloat3("orientation", float3(0, 0, 0));
+		float4 quat = float4(orientation, -sqrtf(std::max<float>(0, 1 - orientation.dot(orientation))) );
+
+		Physics::PhysicsEntity::P physicsEntity = Physics::PhysicsEntity::create(scene, position, quat, Egg::Mesh::Multi::P());
+		densityForEntityBeingAdded = 1.0;
+		initializer(physicsEntity);
+		if(PxRigidDynamic* rigidDynamic = physicsEntity->getActor()->isRigidDynamic())
+			PxRigidBodyExt::updateMassAndInertia(*rigidDynamic, densityForEntityBeingAdded);
+		physicsEntity->getActor()->userData = physicsEntity.get();
+		scene->addActor(*physicsEntity->getActor());
+		ragdoll->addBoneEntity( physicsEntity );
+
+		if(bonesOfRagdollBeingAdded.size() > 0) //root bone needs no parent
+		{
+			std::string parentBoneName = attributeTable.getString("parent");
+			Egg::Scene::Directory<PhysicsEntity>::iterator iParentBone = bonesOfRagdollBeingAdded.find(parentBoneName);
+			if(iParentBone == bonesOfRagdollBeingAdded.end())
+				attributeTable.throwError(std::string("Unknown parent bone '") +parentBoneName+ "'.");
+			float4x4 m = physicsEntity->getModelMatrix();
+			float4x4 p = iParentBone->second->getModelMatrixInverse();
+
+			float3 mpos = physicsEntity->getPosition();
+			float3 ppos = iParentBone->second->getPosition();
+
+			float4x4 fromChildBoneToParentBoneTransform = m*p;
+			PxTransform pixi( PxMat44( (float(&)[16])fromChildBoneToParentBoneTransform) );
+			PxD6Joint* joint = PxD6JointCreate(*physics, 
+				iParentBone->second->getActor(), 
+					pixi,
+//					PxTransform( ~(mpos - ppos)),
+				physicsEntity->getActor(), PxTransform::createIdentity());
+			joint->setMotion(PxD6Axis::eX, PxD6Motion::eLOCKED);
+			joint->setMotion(PxD6Axis::eY, PxD6Motion::eLOCKED);
+			joint->setMotion(PxD6Axis::eZ, PxD6Motion::eLOCKED);
+			joint->setMotion(PxD6Axis::eTWIST, PxD6Motion::eLOCKED);
+			joint->setMotion(PxD6Axis::eSWING1, PxD6Motion::eLIMITED);
+			joint->setMotion(PxD6Axis::eSWING2, PxD6Motion::eLIMITED);
+			joint->setSwingLimit( PxJointLimitCone(1, 1, 0.0) );
+		}
+
+		bonesOfRagdollBeingAdded[entityName] = physicsEntity;
 	}
 	catch(Egg::HrException exception){ exitWithErrorMessage(exception); }
 }

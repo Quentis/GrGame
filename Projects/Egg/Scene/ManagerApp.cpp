@@ -67,6 +67,7 @@ void Scene::ManagerApp::animate(double dt, double t)
 		if(!iEntity->second->animate(dt))
 		{
 			Directory<Entity>::iterator iKilled = iEntity;
+			iKilled->second->kill();
 			iEntity++;
 			entities.erase(iKilled);
 		}

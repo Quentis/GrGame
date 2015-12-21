@@ -46,8 +46,11 @@ namespace Egg { namespace Scene
 		/// Renders the entity as seen from a given camera in a given mien.
 		virtual void render(const RenderParameters& renderParameters);
 
-		/// Updates time-varying entity properties.
+		/// Updates time-varying entity properties. Returns whether the entity should be kept.
 		/// @param dt time step in seconds
 		virtual bool animate(float dt){return true;}
+
+		// Removes entity-associated objects from all linked systems (e.g. Physics actor)
+		virtual void kill(){}
 	};
 }}

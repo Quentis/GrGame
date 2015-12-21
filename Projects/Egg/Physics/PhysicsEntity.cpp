@@ -16,7 +16,9 @@ PhysicsEntity::PhysicsEntity(physx::PxScene* scene, Egg::Math::float3 position, 
 
 PhysicsEntity::~PhysicsEntity()
 {
-//	actor->getScene()->removeActor(*actor);
+//	actor->userData = NULL;
+//	PxScene* scene = actor->getScene();
+//	scene->removeActor(*actor);
 //	actor->release();
 }
 
@@ -102,4 +104,11 @@ PxRigidDynamic* PhysicsEntity::makeActorDynamic(PxScene* scene)
 	actor->release();
 	actor = rigidDynamic;
 	return rigidDynamic;
+}
+
+void PhysicsEntity::kill()
+{
+	__super::kill();
+	actor->release();
+	actor = NULL;
 }

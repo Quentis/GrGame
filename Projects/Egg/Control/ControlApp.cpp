@@ -10,7 +10,7 @@ using namespace Egg::Control;
 using namespace physx;
 
 ControlApp::ControlApp(ID3D11Device* device)
-	:PhysicsApp(device)
+	:PhysicsApp(device), simulationEventCallback(this)
 {
 	using namespace luabind;
 
@@ -31,6 +31,8 @@ ControlApp::ControlApp(ID3D11Device* device)
 HRESULT ControlApp::createResources()
 {
 	__super::createResources();
+	
+	scene->setSimulationEventCallback(&simulationEventCallback);
 
 	return S_OK;
 }
@@ -88,7 +90,8 @@ void ControlApp::animate(double dt, double t)
 			timeRemainingOfTimestep += timestep;
 			globals(luaState)["dt"] = timestep;
 			__super::animate(dt, t);
-			//LABTODO merge spawned entities
+			entities.insert(spawnedEntities.begin(), spawnedEntities.end());
+			spawnedEntities.clear();
 			scene->simulate(timestep);
 			scene->fetchResults(true);
 		}
@@ -127,8 +130,16 @@ void ControlApp::addControlledEntity(luabind::object nil, luabind::object attrib
 		densityForEntityBeingAdded = 1.0;
 		initializer( boost::dynamic_pointer_cast<PhysicsEntity>(controlledEntity) );
 		if(PxRigidDynamic* rigidDynamic = controlledEntity->getActor()->isRigidDynamic())
+		{
 			PxRigidBodyExt::updateMassAndInertia(*rigidDynamic, densityForEntityBeingAdded);
-		controlledEntity->getActor()->userData = controlledEntity.get();
+			physx::PxTransform cmasspose = rigidDynamic->getCMassLocalPose();
+			if(abs(cmasspose.q.w) > 0.99 ) // is the intertia tensor is almost diagonal, make it diagonal
+			{
+				cmasspose.q = PxQuat(0, 0, 0, 1);
+				rigidDynamic->setCMassLocalPose(cmasspose);
+			}
+		}
+		controlledEntity->getActor()->userData = (PhysicsEntity*)controlledEntity.get();
 		scene->addActor(*controlledEntity->getActor());
 		entities[entityName] = controlledEntity;
 		controlledEntities.push_back(controlledEntity);
@@ -179,18 +190,14 @@ bool ControlApp::setForceAndTorqueForTargetToPhysicsEntity(PhysicsEntity::P phys
 				attributeTable.throwError(std::string("Unknown entity ") + markName + " specified as mark.");
 			markPosition = (markPosition.xyz1 * iEntity->second->getModelMatrix()).xyz;
 		}
-		// LABTODO: compute force and torque
-		float4 ahead4 = float4(1, 0, 0, 0) * physicsEntity->getRotationMatrix();
-		float3 ahead = ahead4.xyz;
-		float3 markDir = markPosition - physicsEntity->getPosition();
-		float markDist = markDir.length();
-		markDir = markDir.normalize();
+		float3 markDiff = markPosition - physicsEntity->getPosition();
+		float markDist = markDiff.length();
+		float3 markDir = markDiff / markDist;
+		float3 ahead = (float3::xUnit.xyz0 * physicsEntity->getRotationMatrix()).xyz;
+		rigidDynamic->addForce(~(ahead * markDir.dot(ahead) * maxForce ) );
+		rigidDynamic->addTorque(~(ahead.cross(markDir) * maxTorque ) );
 
-		rigidDynamic->addForce( ~(ahead * ahead.dot(markDir)   * maxForce));
-		rigidDynamic->addTorque(~(ahead * ahead.cross(markDir) * maxTorque));
-
-		return proximityRadius > markDist;
-		// LABTODO: if reached waypoint, return true
+		if(markDist < proximityRadius)	return true;
 	}
 	catch(Egg::HrException exception){ exitWithErrorMessage(exception); }
 
@@ -228,9 +235,35 @@ void ControlApp::spawnControlledEntity(PhysicsEntity::P parentPhysicsEntity, lua
 		}
 		controlledEntity->getActor()->userData = controlledEntity.get();
 		scene->addActor(*controlledEntity->getActor());
-		//LABTODO insert entity into container for spawned entities
+		spawnedEntities[entityName] = controlledEntity;
 		controlledEntities.push_back(controlledEntity);
 	}
 	catch(Egg::HrException exception){ exitWithErrorMessage(exception); }
 }
 
+void  ControlApp::SimulationEventCallback::onContact (const PxContactPairHeader &pairHeader, const PxContactPair *pairs, PxU32 nbPairs)
+{
+	if( pairHeader.flags & (PxContactPairHeaderFlag::eDELETED_ACTOR_0 | PxContactPairHeaderFlag::eDELETED_ACTOR_1) )
+		return;
+
+	for(PxU32 i=0; i < nbPairs; i++)
+	{
+		const PxContactPair& cp = pairs[i];
+
+		if(cp.events & PxPairFlag::eNOTIFY_TOUCH_FOUND)
+		{
+			if(pairHeader.actors[0]->userData == NULL)
+				return;
+			if(pairHeader.actors[1]->userData == NULL)
+				return;
+
+			ControlledEntity::P controlledEntity0 = boost::dynamic_pointer_cast<ControlledEntity>(((PhysicsEntity*)pairHeader.actors[0]->userData)->shared_from_this());
+			ControlledEntity::P controlledEntity1 = boost::dynamic_pointer_cast<ControlledEntity>(((PhysicsEntity*)pairHeader.actors[1]->userData)->shared_from_this());
+
+			if(controlledEntity0 && controlledEntity1)
+				controlledEntity0->onContact(controlledEntity1);
+			if(controlledEntity1 && controlledEntity0)
+				controlledEntity1->onContact(controlledEntity0);
+		}
+	}
+}

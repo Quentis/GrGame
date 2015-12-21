@@ -13,6 +13,7 @@ ControlledEntity::ControlledEntity(physx::PxScene* scene, Egg::Math::float3 posi
 
 ControlledEntity::~ControlledEntity()
 {
+ 	bool mivan= true;
 }
 
 bool ControlledEntity::animate(float dt)

@@ -1,15 +1,7 @@
 #include "DXUT.h"
 #include "Game.h"
-#include <assimp/importer.hpp>
-#include <assimp/Scene.h>
-#include <assimp/PostProcess.h>
-#include "Mesh/Importer.h"
-#include "Scene/StaticEntity.h"
-#include "UtfConverter.h"
 #include "Math/math.h"
-#include <windows.h>
 
-using namespace Egg::Math;
 
 Game::Game(ID3D11Device* device) : Egg::Control::ControlApp(device)
 {

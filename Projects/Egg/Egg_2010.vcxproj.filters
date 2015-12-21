@@ -38,6 +38,9 @@
     <Filter Include="Control">
       <UniqueIdentifier>{074b4dc8-5771-4ddc-934c-f1ed72751f35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vehicle">
+      <UniqueIdentifier>{6ff9c2e9-7cea-4e47-a41d-c2b866cb5cd4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -203,6 +206,21 @@
     </ClCompile>
     <ClCompile Include="Control\ControlledEntity.cpp">
       <Filter>Control</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\RagdollEntity.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicle\VehicleApp.cpp">
+      <Filter>Vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicle\VehicleEntity.cpp">
+      <Filter>Vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicle\VehicleSceneQueryData.cpp">
+      <Filter>Vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\AiEnumReflections.cpp">
+      <Filter>Script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -406,6 +424,27 @@
     </ClInclude>
     <ClInclude Include="Control\ControlledEntity.h">
       <Filter>Control</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\RagdollEntity.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicle\ConvexPhysicsMesh.h">
+      <Filter>Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicle\StaticPartEntity.h">
+      <Filter>Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicle\VehicleApp.h">
+      <Filter>Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicle\VehicleEntity.h">
+      <Filter>Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicle\VehicleSceneQueryData.h">
+      <Filter>Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\AiEnumReflections.h">
+      <Filter>Script</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
