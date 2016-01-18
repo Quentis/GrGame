@@ -68,10 +68,11 @@ HRESULT Script::ScriptedApp::createResources()
 
 HRESULT Script::ScriptedApp::releaseResources()
 {
-	HRESULT hr = Scene::ManagerApp::releaseResources();
+
 	// no references to lua objects should remain (e.g. controlStates)
 	lua_close(luaState);
-	return hr;
+
+	return Scene::ManagerApp::releaseResources();
 }
 
 void Script::ScriptedApp::render(ID3D11DeviceContext* context)

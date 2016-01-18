@@ -20,7 +20,13 @@ Math::float4x4 VehicleEntity::getModelMatrix()
 {
 	PxTransform m = actor->getGlobalPose();
 
-	float4 rot = Egg::Physics::PxQuatToRadiansAndUnitAxis(m.q);
+	//float4 rot = Egg::Physics::PxQuatToRadiansAndUnitAxis(m.q);
+
+	float angle;
+	float3 axis;
+	m.q.toRadiansAndUnitAxis(angle, ~axis);
+	float4 rot = {axis, angle};
+
 	if ((rot.isinf().any() == false) && (rot.isnan().any() == false))
 	{
 		return float4x4::rotation(rot.xyz, rot.w) * float4x4::translation(~m.p);
@@ -60,7 +66,13 @@ Math::float4x4 VehicleEntity::getRotationMatrix()
 	PxTransform m = actor->getGlobalPose();
 
 	//converting pxquat
-	float4 rot = Egg::Physics::PxQuatToRadiansAndUnitAxis(m.q);
+	//float4 rot = Egg::Physics::PxQuatToRadiansAndUnitAxis(m.q);
+
+	float angle;
+	float3 axis;
+	m.q.toRadiansAndUnitAxis(angle, ~axis);
+	float4 rot = { axis, angle };
+
 	if ((rot.isinf().any() == false) && (rot.isnan().any() == false))
 	{
 		return float4x4::rotation(rot.xyz, rot.w);
@@ -76,7 +88,13 @@ Math::float4x4 VehicleEntity::getRotationMatrixInverse()
 	using namespace Egg::Math;
 	PxTransform m = actor->getGlobalPose();
 
-	float4 rot = Egg::Physics::PxQuatToRadiansAndUnitAxis(m.q);
+	//float4 rot = Egg::Physics::PxQuatToRadiansAndUnitAxis(m.q);
+
+	float angle;
+	float3 axis;
+	m.q.toRadiansAndUnitAxis(angle, ~axis);
+	float4 rot = { axis, angle };
+
 	if ((rot.isinf().any() == false) && (rot.isnan().any() == false))
 	{
 		return float4x4::rotation(rot.xyz, -rot.w);
