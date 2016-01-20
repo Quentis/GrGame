@@ -8,6 +8,7 @@
 #include "Mesh/Indexed.h"
 #include "Mesh/Multi.h"
 #include "Cam/Base.h"
+#include "Shadow/ShadowMapBuilder.h"
 #include <assimp/importer.hpp>      // C++ importer interface
 #include <assimp/scene.h>       // Output data structure
 #include <assimp/postProcess.h> // Post processing flags
@@ -52,6 +53,8 @@ namespace Egg { namespace Scene
 		Directory<Cam::Base>::iterator currentCamera;
 		/// It determines whether the shadows are enabled or not
 		bool shadowEnable;
+		/// ShadowMapBuilder creates the ShadowMap
+		Shadow::ShadowMapBuilder::P shadowMapBuilder;
 
 		/// Returns the SRV to a texture resource, creating it from file if not yet loaded.
 		ID3D11ShaderResourceView* loadSrv(const std::string& filename, const std::string& alias = "");

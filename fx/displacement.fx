@@ -1,8 +1,5 @@
-
 Texture2D normalTexture;
 Texture2D bumpTexture;
-
-
 
 float4 psNormalMapped(VsosTrafo input) : SV_TARGET {
 	float3 normal = normalize(input.normal);

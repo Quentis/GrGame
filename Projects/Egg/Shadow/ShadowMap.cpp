@@ -57,14 +57,3 @@ ID3D11ShaderResourceView* ShadowMap::getDepthMapSrv()
 {
 	return depthMapSrv;
 }
-
-void ShadowMap::bindDsvAndSetNullRenderTarget(ID3D11DeviceContext* context)
-{
-	context->RSSetViewports(1, &viewport);
-	// Set null render target because we are only going to draw
-	// to depth buffer. Setting a null render target will disable
-	// color writes.
-	ID3D11RenderTargetView* renderTargets[1] = { nullptr };
-	context->OMSetRenderTargets(1, renderTargets, depthMapDsv);
-	context->ClearDepthStencilView(depthMapDsv, D3D11_CLEAR_DEPTH, 1.0f, 0);
-}

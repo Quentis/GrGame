@@ -23,6 +23,9 @@ HRESULT Scene::ManagerApp::createResources()
 	renderParameters.eyePos = renderParameters.effect->GetVariableByName("eyePos")->AsVector();
 
 	enableShadows();
+	shadowMapBuilder = Shadow::ShadowMapBuilder::P(new Shadow::ShadowMapBuilder);
+	shadowMapBuilder->setDevice(device);
+
 
 	return S_OK;
 }
@@ -46,10 +49,15 @@ void Scene::ManagerApp::render(ID3D11DeviceContext* context)
 	if(currentCamera != cameras.end())
 	{
 		if (shadowEnable){
-			Shadow::ShadowMapBuilder smb;
-			smb.setContext(context).setLightDir(float3(0.0F, 0.0F, 0.0F)).setLightPos(float3(1.0F, 1.0F, 1.0F));
-			smb.setShadowTransformRenderParams(renderParameters);
-			renderParameters.mien = getMien("shadowMap");
+			shadowMapBuilder->setLightDir(float3(0.0F, 0.0F, 0.0F)).setLightPos(float3(1.0F, 1.0F, 1.0F));
+			shadowMapBuilder->setBoundingSphere(float3(0.0F, 0.0F, 0.0F), 1000.0F);
+
+			shadowMapBuilder->buildShadowTransformRenderParams(renderParameters, getMien("shadowMap"));
+
+			ID3D11RenderTargetView* defaultRtv = DXUTGetD3D11RenderTargetView();
+			ID3D11DepthStencilView* defaultDsv = DXUTGetD3D11DepthStencilView();
+
+			shadowMapBuilder->bindDsvAndSetNullRenderTarget(context);
 
 			Directory<Entity>::iterator iEntity = entities.begin();
 			Directory<Entity>::iterator eEntity = entities.end();
@@ -58,6 +66,9 @@ void Scene::ManagerApp::render(ID3D11DeviceContext* context)
 				iEntity->second->render(renderParameters);
 				iEntity++;
 			}
+
+			context->OMSetRenderTargets(1, &defaultRtv, defaultDsv);
+			context->ClearDepthStencilView(defaultDsv, D3D11_CLEAR_DEPTH, 1.0, 0);
 		}
 
 		renderParameters.eyePos->SetFloatVector((float*)&currentCamera->second->getEyePosition());
