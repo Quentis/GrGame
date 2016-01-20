@@ -1,6 +1,9 @@
 #include "DXUT.h"
-#include "ShadowMapBuilder.h"
+#include "Shadow/ShadowMapBuilder.h"
+#include "Scene/RenderParameters.h"
 
+using namespace Egg::Shadow;
+using namespace Egg::Cam;
 
 const unsigned	ShadowMapBuilder::defaultWidth  = 1024;
 const unsigned	ShadowMapBuilder::defaultHeight = 1024;
@@ -10,7 +13,7 @@ const float3 	ShadowMapBuilder::defaultBoundingSphereCenter = float3(0.0F, 0.0F,
 const float		ShadowMapBuilder::defaultBoundingSphereRadius = 10.0F;
 
 ShadowMapBuilder::ShadowMapBuilder() :
-	width(defaultWidth), height(defaultHeight), device(nullptr),
+	width(defaultWidth), height(defaultHeight), context(nullptr),
 	lightDir(defaultLightDir), lightPos(defaultLightPos),
 	boundingSphere(defaultBoundingSphereCenter, defaultBoundingSphereRadius)
 {}
@@ -37,8 +40,8 @@ ShadowMapBuilder& ShadowMapBuilder::setHeight(unsigned height) {
 	return *this;
 }
 
-ShadowMapBuilder& ShadowMapBuilder::setDevice(ID3D11Device* device) {
-	this->device = device;
+ShadowMapBuilder& ShadowMapBuilder::setContext(ID3D11DeviceContext* context) {
+	this->context = context;
 	return *this;
 }
 
@@ -58,36 +61,12 @@ ShadowMapBuilder& ShadowMapBuilder::setBoundingSphere(const float3& center, floa
 	return *this;
 }
 
-void ShadowMapBuilder::BuildShadowTransform() {
-	float3 lightToCenter;
-	float3 up;
 
-	if ((lightDir == float3(0.0F, 0.0F, 0.0F)).all()) {
-		lightDir = (lightPos - boundingSphere.getCenter()).normalize();
-	}
-
-	lightPos = boundingSphere.getCenter() - lightDir * boundingSphere.getRadius() * 2.0F;
-	lightToCenter = boundingSphere.getCenter() - lightPos;
+void ShadowMapBuilder::setShadowTransformRenderParams(Egg::Scene::RenderParameters& renderParameters) {
+	lightCam = LightCam::P(new LightCam(lightPos, lightDir, boundingSphere));
+	renderParameters.eyePos->SetFloatVector((float*)&lightCam->getEyePosition());
+	renderParameters.viewDirMatrix->SetMatrix((float*)&lightCam->getViewDirMatrix());
+	renderParameters.camera = lightCam;
+	renderParameters.mien = 
 	
-	if (float3(0.0F, 1.0F, 0.0F).cross(lightToCenter).length() < 0.001F) {
-		up = float3(0.0F, 1.0F, 0.0F);
-	}
-	else {
-		up = float3(1.0F, 0.0F, 0.0F);
-	}
-
-	float4x4 lightViewMtx = float4x4::view(lightPos, lightToCenter, up);
-	float4 targetPosLC = float4(boundingSphere.getCenter(), 1.0F) * lightViewMtx;
-
-	/* invTan(R^2 / (R^2 + R^2)) = 0.6154 */
-	float4x4 lightProjMtx = float4x4::proj(0.6154, 1, targetPosLC.z - boundingSphere.getRadius(), targetPosLC.z + boundingSphere.getRadius());
-
-	float4x4 ndcToTextureMtx(
-		0.5F,  0.0F, 0.0F, 0.0F,
-		0.0F, -0.5F, 0.0F, 0.0F,
-		0.0F,  0.0F, 1.0F, 0.0F,
-		0.5F,  0.5F, 0.0F, 1.0F);
-
-	float4x4 shadowMapTransformMtx = lightViewMtx * lightProjMtx * ndcToTextureMtx;
-
 }

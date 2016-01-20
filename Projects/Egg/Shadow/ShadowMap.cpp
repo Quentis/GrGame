@@ -1,6 +1,7 @@
 #include "DXUT.h"
 #include "Shadow/ShadowMap.h"
 
+using namespace Egg::Shadow;
 
 ShadowMap::ShadowMap(ID3D11Device* device, UINT width, UINT height)
 	: width(width), height(height), depthMap(nullptr), depthMapSrv(nullptr), depthMapDsv(nullptr){

@@ -385,6 +385,7 @@
     <ClCompile Include="Cam\Fixed.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Cam\LightCam.cpp" />
     <ClCompile Include="Control\ControlApp.cpp" />
     <ClCompile Include="Control\ControlledEntity.cpp" />
     <ClCompile Include="Math\constants.cpp" />
@@ -415,9 +416,11 @@
     <ClCompile Include="Script\ScriptedApp.cpp" />
     <ClCompile Include="Shadow\ShadowMap.cpp" />
     <ClCompile Include="Shadow\ShadowMapBuilder.cpp" />
+    <ClCompile Include="Shadow\Sphere.cpp" />
     <ClCompile Include="Vehicle\VehicleApp.cpp" />
     <ClCompile Include="Vehicle\VehicleEntity.cpp" />
     <ClCompile Include="Vehicle\VehicleSceneQueryData.cpp" />
+    <ClInclude Include="Cam\LightCam.h" />
     <ClInclude Include="Control\ControlApp.h" />
     <ClInclude Include="Control\ControlledEntity.h" />
     <ClInclude Include="Physics\PhysicsApp.h" />
@@ -442,6 +445,7 @@
     <ClInclude Include="Script\ScriptedApp.h" />
     <ClInclude Include="Shadow\ShadowMap.h" />
     <ClInclude Include="Shadow\ShadowMapBuilder.h" />
+    <ClInclude Include="Shadow\Sphere.h" />
     <ClInclude Include="Vehicle\ConvexPhysicsMesh.h" />
     <ClInclude Include="Vehicle\StaticPartEntity.h" />
     <ClInclude Include="Vehicle\VehicleApp.h" />

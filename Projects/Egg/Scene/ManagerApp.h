@@ -50,6 +50,8 @@ namespace Egg { namespace Scene
 		Directory<Cam::Base> cameras;
 		/// Iterator to current camera in cameras. Must be updated when cameras is changed.
 		Directory<Cam::Base>::iterator currentCamera;
+		/// It determines whether the shadows are enabled or not
+		bool shadowEnable;
 
 		/// Returns the SRV to a texture resource, creating it from file if not yet loaded.
 		ID3D11ShaderResourceView* loadSrv(const std::string& filename, const std::string& alias = "");
@@ -67,6 +69,9 @@ namespace Egg { namespace Scene
 		virtual bool processMessage( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 		virtual void render(ID3D11DeviceContext* context);
 
+		bool isShadowsEnabled() { return shadowEnable; }
+		void enableShadows() { shadowEnable = true; }
+		void disableShadows() { shadowEnable = false; }
 	};
 
 }}

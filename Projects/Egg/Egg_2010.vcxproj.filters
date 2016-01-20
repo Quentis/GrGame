@@ -231,6 +231,12 @@
     <ClCompile Include="Shadow\ShadowMapBuilder.cpp">
       <Filter>Shadow</Filter>
     </ClCompile>
+    <ClCompile Include="Cam\LightCam.cpp">
+      <Filter>Cam</Filter>
+    </ClCompile>
+    <ClCompile Include="Shadow\Sphere.cpp">
+      <Filter>Shadow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -459,6 +465,12 @@
       <Filter>Shadow</Filter>
     </ClInclude>
     <ClInclude Include="Shadow\ShadowMapBuilder.h">
+      <Filter>Shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="Cam\LightCam.h">
+      <Filter>Cam</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadow\Sphere.h">
       <Filter>Shadow</Filter>
     </ClInclude>
   </ItemGroup>

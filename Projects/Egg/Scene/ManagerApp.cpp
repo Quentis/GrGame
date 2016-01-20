@@ -5,6 +5,7 @@
 #include "Mesh/Importer.h"
 #include "App/ThrowOnFail.h"
 #include "App/stdConversions.h"
+#include "Shadow/ShadowMapBuilder.h"
 
 using namespace Egg;
 
@@ -20,6 +21,9 @@ HRESULT Scene::ManagerApp::createResources()
 	renderParameters.modelViewProjMatrix = renderParameters.effect->GetVariableByName("modelViewProjMatrix")->AsMatrix();
 	renderParameters.viewDirMatrix = renderParameters.effect->GetVariableByName("viewDirMatrix")->AsMatrix();
 	renderParameters.eyePos = renderParameters.effect->GetVariableByName("eyePos")->AsVector();
+
+	enableShadows();
+
 	return S_OK;
 }
 
@@ -38,8 +42,24 @@ HRESULT Scene::ManagerApp::releaseResources()
 void Scene::ManagerApp::render(ID3D11DeviceContext* context)
 {
 	renderParameters.context = context;
+
 	if(currentCamera != cameras.end())
 	{
+		if (shadowEnable){
+			Shadow::ShadowMapBuilder smb;
+			smb.setContext(context).setLightDir(float3(0.0F, 0.0F, 0.0F)).setLightPos(float3(1.0F, 1.0F, 1.0F));
+			smb.setShadowTransformRenderParams(renderParameters);
+			renderParameters.mien = getMien("shadowMap");
+
+			Directory<Entity>::iterator iEntity = entities.begin();
+			Directory<Entity>::iterator eEntity = entities.end();
+			while (iEntity != eEntity)
+			{
+				iEntity->second->render(renderParameters);
+				iEntity++;
+			}
+		}
+
 		renderParameters.eyePos->SetFloatVector((float*)&currentCamera->second->getEyePosition());
 		renderParameters.viewDirMatrix->SetMatrix((float*)&currentCamera->second->getViewDirMatrix());
 		renderParameters.camera = currentCamera->second;
