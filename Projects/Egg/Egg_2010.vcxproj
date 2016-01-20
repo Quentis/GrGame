@@ -413,6 +413,8 @@
     <ClCompile Include="Scene\ManagerApp.cpp" />
     <ClCompile Include="Script\AiEnumReflections.cpp" />
     <ClCompile Include="Script\ScriptedApp.cpp" />
+    <ClCompile Include="Shadow\ShadowMap.cpp" />
+    <ClCompile Include="Shadow\ShadowMapBuilder.cpp" />
     <ClCompile Include="Vehicle\VehicleApp.cpp" />
     <ClCompile Include="Vehicle\VehicleEntity.cpp" />
     <ClCompile Include="Vehicle\VehicleSceneQueryData.cpp" />
@@ -438,6 +440,8 @@
     <ClInclude Include="Script\EnumReflectionMap.h" />
     <ClInclude Include="Script\LuaTable.h" />
     <ClInclude Include="Script\ScriptedApp.h" />
+    <ClInclude Include="Shadow\ShadowMap.h" />
+    <ClInclude Include="Shadow\ShadowMapBuilder.h" />
     <ClInclude Include="Vehicle\ConvexPhysicsMesh.h" />
     <ClInclude Include="Vehicle\StaticPartEntity.h" />
     <ClInclude Include="Vehicle\VehicleApp.h" />

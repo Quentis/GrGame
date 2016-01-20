@@ -41,6 +41,9 @@
     <Filter Include="Vehicle">
       <UniqueIdentifier>{6ff9c2e9-7cea-4e47-a41d-c2b866cb5cd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shadow">
+      <UniqueIdentifier>{5ccf47fd-f5ce-41b9-bfb1-de747b12929f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -221,6 +224,12 @@
     </ClCompile>
     <ClCompile Include="Script\AiEnumReflections.cpp">
       <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="Shadow\ShadowMap.cpp">
+      <Filter>Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="Shadow\ShadowMapBuilder.cpp">
+      <Filter>Shadow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -445,6 +454,12 @@
     </ClInclude>
     <ClInclude Include="Script\AiEnumReflections.h">
       <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadow\ShadowMap.h">
+      <Filter>Shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadow\ShadowMapBuilder.h">
+      <Filter>Shadow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
